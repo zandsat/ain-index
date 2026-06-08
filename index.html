@@ -78,6 +78,10 @@
   .nav-cta { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-dark); border: 1px solid oklch(0.95 0.012 265 / 0.3); padding: 9px 16px; border-radius: 4px; white-space: nowrap; }
   .nav-cta:hover { border-color: var(--cobalt-bright); color: var(--cobalt-bright); }
 
+  /* language toggle */
+  .lang-btn { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; background: none; border: 1px solid oklch(0.95 0.012 265 / 0.22); color: var(--on-dark-soft); padding: 7px 11px; border-radius: 4px; cursor: pointer; transition: border-color .2s, color .2s; }
+  .lang-btn:hover { border-color: var(--cobalt-bright); color: var(--cobalt-bright); }
+
   /* ---------------- HERO ---------------- */
   .hero { background: var(--navy); color: var(--on-dark); position: relative; overflow: hidden; padding: 0; min-height: 88vh; display: flex; align-items: center; }
   .hero.glow::before { content: ""; position: absolute; inset: 0; background: radial-gradient(120% 90% at 78% 18%, oklch(0.5 0.17 262 / 0.26), transparent 60%); pointer-events: none; }
@@ -102,27 +106,7 @@
   .belief-body { margin-top: 40px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 64px; align-items: start; }
   .belief-body .prose p { font-size: 19px; line-height: 1.62; font-weight: 300; color: var(--ink-soft); margin-bottom: 1.1em; }
   .belief-body .prose strong { color: var(--ink); font-weight: 500; }
-  .pullquote { font-family: var(--serif); font-weight: 300; font-style: italic; font-size: clamp(24px, 2.7vw, 33px); line-height: 1.28; letter-spacing: -0.01em; color: var(--ink); margin: 6px 0 0; padding-left: 26px; border-left: 2px solid var(--cobalt); }
-  .pullquote em { font-style: normal; color: var(--cobalt); }
 
-  .stays { background: var(--paper-2); border: 1px solid var(--line); border-radius: 8px; padding: 6px 34px; }
-  .stays-row { display: grid; grid-template-columns: 1fr; gap: 0; }
-  .stays h4 { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.12em; text-transform: uppercase; margin: 26px 0 4px; color: var(--ink-faint); }
-  .stays h4.accent { color: var(--cobalt); }
-  .stays ul { list-style: none; margin: 0 0 24px; padding: 0; }
-  .stays li { padding: 9px 0 9px 26px; position: relative; font-size: 17px; color: var(--ink); border-bottom: 1px solid var(--line-soft); }
-  .stays li:last-child { border-bottom: none; }
-  .stays li::before { content: ""; position: absolute; left: 2px; top: 17px; width: 6px; height: 6px; border-radius: 50%; background: var(--ink-faint); }
-  .stays .chg li::before { background: var(--cobalt); border-radius: 1px; width: 7px; height: 7px; top: 16px; transform: rotate(45deg); }
-  .stays .divider { height: 1px; background: var(--line); margin: 4px 0; }
-
-  .contrast { display: flex; flex-direction: column; gap: 12px; }
-  .crow { display: grid; grid-template-columns: 1fr auto 1fr; gap: 14px; align-items: center; padding: 17px 22px; border: 1px solid var(--line); border-radius: 8px; background: var(--paper-2); }
-  .crow .neg { color: var(--ink-faint); font-size: 16px; text-align: right; }
-  .crow .arrow { color: var(--cobalt); font-size: 18px; }
-  .crow .pos { color: var(--ink); font-size: 16px; font-weight: 500; }
-
-  /* ---------------- ADAPTIVE / LASTING / YOURS (scroll-driven) ---------------- */
   .princ { display: flex; flex-direction: column; }
   .princ .pr { padding: 18px 0; border-bottom: 1px solid var(--line-soft); }
   .princ .pr:first-child { padding-top: 0; }
@@ -149,7 +133,6 @@
   .wip { position: relative; }
   .wip::before { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 4; background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='330'%20height='200'%3E%3Ctext%20x='8'%20y='112'%20font-family='monospace'%20font-size='18'%20letter-spacing='3'%20fill='%23d99a2b'%20fill-opacity='0.13'%20transform='rotate(-22%20160%20100)'%3EWORK%20IN%20PROGRESS%3C/text%3E%3C/svg%3E"); background-repeat: repeat; }
   .wip::after { content: "Work in progress · refining next"; position: absolute; top: 16px; right: 16px; z-index: 6; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; background: oklch(0.82 0.13 78); color: oklch(0.28 0.06 60); padding: 6px 12px; border-radius: 999px; pointer-events: none; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
-  @media (max-width: 860px) { .crow { grid-template-columns: 1fr; gap: 6px; text-align: left; } .crow .neg { text-align: left; } }
 
   /* ---------------- WORK ---------------- */
   .work { background: var(--navy); color: var(--on-dark); }
@@ -243,10 +226,11 @@
     <div class="nav-inner">
       <div class="wordmark">Imago<b>.</b></div>
       <div class="nav-links">
-        <a href="#what">What we do</a>
-        <a href="#work">How we work</a>
-        <a href="#why">Why Imago</a>
-        <a href="mailto:hello@startwithimago.com?subject=Starting%20a%20conversation%20with%20Imago&body=Hi%20Imago%20team%2C%0A%0AA%20bit%20about%20us%3A%0A%0ACompany%3A%20%0AIndustry%3A%20%0AWhat%20we%27re%20looking%20to%20change%3A%20%0A%0ALooking%20forward%20to%20connecting." class="nav-cta">Get in touch</a>
+        <a href="#what" data-i18n="nav_what">What we do</a>
+        <a href="#work" data-i18n="nav_work">How we work</a>
+        <a href="#why" data-i18n="nav_why">Why Imago</a>
+        <button class="lang-btn" id="langBtn" aria-label="Switch language">ES</button>
+        <a href="#" class="nav-cta i18n-mailto" data-i18n="nav_cta">Get in touch</a>
       </div>
     </div>
   </nav>
@@ -254,13 +238,13 @@
   <!-- HERO -->
   <header class="hero" data-screen-label="Hero">
     <div class="wrap hero-inner">
-      <span class="eyebrow">For established companies ready to modernize</span>
+      <span class="eyebrow" data-i18n="hero_eyebrow">For established companies ready to modernize</span>
       <div class="hero-mark">Imago<b>.</b></div>
       <h1 id="heroHeadline">Your business. New era. New <em>how</em>.</h1>
-      <p class="sub">We help established companies discover how AI can transform the way they work — <strong>without changing what makes them, them.</strong></p>
+      <p class="sub" data-i18n="hero_sub">We help established companies discover how AI can transform the way they work — <strong>without changing what makes them, them.</strong></p>
       <div class="hero-cta">
-        <a href="mailto:hello@startwithimago.com?subject=Starting%20a%20conversation%20with%20Imago&body=Hi%20Imago%20team%2C%0A%0AA%20bit%20about%20us%3A%0A%0ACompany%3A%20%0AIndustry%3A%20%0AWhat%20we%27re%20looking%20to%20change%3A%20%0A%0ALooking%20forward%20to%20connecting." class="btn">Get in touch <span class="btn-arrow">→</span></a>
-        <a href="#work" class="btn-ghost">See how we work</a>
+        <a href="#" class="btn i18n-mailto" data-i18n="hero_cta">Get in touch <span class="btn-arrow">→</span></a>
+        <a href="#work" class="btn-ghost" data-i18n="hero_ghost">See how we work</a>
       </div>
     </div>
     <div class="scroll-cue" id="scrollCue"></div>
@@ -270,18 +254,27 @@
   <section class="belief" id="what" data-screen-label="What we do">
     <div class="wrap">
       <div class="col reveal">
-        <span class="eyebrow">What we do</span>
-        <h2 class="h2">We help you put AI at the <em>heart</em> of how you work.</h2>
+        <span class="eyebrow" data-i18n="what_eyebrow">What we do</span>
+        <h2 class="h2" data-i18n="what_h2">We help you put AI at the <em>heart</em> of how you work.</h2>
       </div>
       <div class="belief-body">
         <div class="prose reveal">
-          <p>Not a single tool. Not a one-off project that ends when we leave. We help your whole organization modernize — and build the muscle to <strong>keep modernizing long after we're gone.</strong></p>
-          <p>We work beside your leadership to find where AI creates real, <strong>measurable</strong> leverage, prove what's actually worth doing, and turn it into how the company runs.</p>
+          <p data-i18n="what_p1">Not a single tool. Not a one-off project that ends when we leave. We help your whole organization modernize — and build the muscle to <strong>keep modernizing long after we're gone.</strong></p>
+          <p data-i18n="what_p2">We work beside your leadership to find where AI creates real, <strong>measurable</strong> leverage, prove what's actually worth doing, and turn it into how the company runs.</p>
         </div>
         <div class="princ" id="princSection">
-          <div class="pr"><div class="prl">Adaptive</div><p><span class="negin">Not a product to install</span> — a company that keeps improving how it works.</p></div>
-          <div class="pr"><div class="prl">Lasting</div><p><span class="negin">Not a pilot that fizzles</span> — a partnership that stays through execution.</p></div>
-          <div class="pr"><div class="prl">Yours</div><p><span class="negin">Not advice in a deck</span> — a capability that lives with your team.</p></div>
+          <div class="pr">
+            <div class="prl" data-i18n="princ_adaptive_label">Adaptive</div>
+            <p data-i18n="princ_adaptive_text"><span class="negin">Not a product to install</span> — a company that keeps improving how it works.</p>
+          </div>
+          <div class="pr">
+            <div class="prl" data-i18n="princ_lasting_label">Lasting</div>
+            <p data-i18n="princ_lasting_text"><span class="negin">Not a pilot that fizzles</span> — a partnership that stays through execution.</p>
+          </div>
+          <div class="pr">
+            <div class="prl" data-i18n="princ_yours_label">Yours</div>
+            <p data-i18n="princ_yours_text"><span class="negin">Not advice in a deck</span> — a capability that lives with your team.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -291,25 +284,25 @@
   <section class="work dark wip" id="work" data-screen-label="How we work">
     <div class="wrap">
       <div class="col reveal">
-        <span class="eyebrow">How we work</span>
-        <h2 class="h2">A partnership, not a project.</h2>
-        <p class="lead">We don't sell you a system and leave. <strong>We help your organization become one that can keep building.</strong></p>
+        <span class="eyebrow" data-i18n="work_eyebrow">How we work</span>
+        <h2 class="h2" data-i18n="work_h2">A partnership, not a project.</h2>
+        <p class="lead" data-i18n="work_lead">We don't sell you a system and leave. <strong>We help your organization become one that can keep building.</strong></p>
       </div>
       <div class="steps">
         <div class="step reveal">
           <div class="num">01</div>
-          <h3>Assess</h3>
-          <p>We map how your company actually operates — where time, money, and momentum are lost — and identify the highest-leverage opportunities for AI to make a difference.</p>
+          <h3 data-i18n="step1_title">Assess</h3>
+          <p data-i18n="step1_text">We map how your company actually operates — where time, money, and momentum are lost — and identify the highest-leverage opportunities for AI to make a difference.</p>
         </div>
         <div class="step reveal">
           <div class="num">02</div>
-          <h3>Design the roadmap</h3>
-          <p>We build a transformation plan specific to your company, your team, and your capacity for change. No generic frameworks. No unnecessary complexity.</p>
+          <h3 data-i18n="step2_title">Design the roadmap</h3>
+          <p data-i18n="step2_text">We build a transformation plan specific to your company, your team, and your capacity for change. No generic frameworks. No unnecessary complexity.</p>
         </div>
         <div class="step reveal">
           <div class="num">03</div>
-          <h3>Stay through execution</h3>
-          <p>We work alongside you through implementation — validating what's working, fixing what isn't, and building the internal capability to sustain it long after we're done.</p>
+          <h3 data-i18n="step3_title">Stay through execution</h3>
+          <p data-i18n="step3_text">We work alongside you through implementation — validating what's working, fixing what isn't, and building the internal capability to sustain it long after we're done.</p>
         </div>
       </div>
     </div>
@@ -319,27 +312,31 @@
   <section class="why wip" id="why" data-screen-label="Why Imago">
     <div class="wrap">
       <div class="col reveal">
-        <span class="eyebrow">Why Imago</span>
-        <h2 class="h2">Built by people who built the technology.</h2>
+        <span class="eyebrow" data-i18n="why_eyebrow">Why Imago</span>
+        <h2 class="h2" data-i18n="why_h2">Built by people who built the technology.</h2>
       </div>
       <div class="why-grid">
         <div class="prose reveal">
-          <p>Imago is led by two senior engineers from <strong>Meta</strong> and <strong>Google</strong> — roughly twelve years between them spent training the models, scaling the infrastructure, and building the teams behind them.</p>
-          <p>That means we understand AI from the inside: what's real, what's hype, and what it actually takes to make it work inside a company with real operations — not a demo.</p>
+          <p data-i18n="why_p1">Imago is led by two senior engineers from <strong>Meta</strong> and <strong>Google</strong> — roughly twelve years between them spent training the models, scaling the infrastructure, and building the teams behind them.</p>
+          <p data-i18n="why_p2">That means we understand AI from the inside: what's real, what's hype, and what it actually takes to make it work inside a company with real operations — not a demo.</p>
         </div>
         <div class="cred-card reveal">
           <div class="row">
             <span class="cred-badge">Ex-Meta</span>
-            <p>Trained &amp; shipped large-scale models in production.</p>
+            <p data-i18n="cred_meta_text">Trained &amp; shipped large-scale models in production.</p>
           </div>
           <div class="row">
             <span class="cred-badge">Ex-Google</span>
-            <p>Scaled infrastructure and the teams that run it.</p>
+            <p data-i18n="cred_google_text">Scaled infrastructure and the teams that run it.</p>
           </div>
           <div class="industries">
-            <div class="lab">Built for companies with real operations</div>
+            <div class="lab" data-i18n="industries_label">Built for companies with real operations</div>
             <div class="ind-tags">
-              <span>Manufacturing</span><span>Logistics</span><span>Distribution</span><span>Professional services</span><span>+ your industry</span>
+              <span data-i18n="ind_manufacturing">Manufacturing</span>
+              <span data-i18n="ind_logistics">Logistics</span>
+              <span data-i18n="ind_distribution">Distribution</span>
+              <span data-i18n="ind_services">Professional services</span>
+              <span data-i18n="ind_yours">+ your industry</span>
             </div>
             <div class="placeholder-note">↳ placeholder — swap in named founders &amp; target industries</div>
           </div>
@@ -351,10 +348,10 @@
   <!-- CTA -->
   <section class="cta wip" id="start" data-screen-label="Book a call">
     <div class="wrap reveal">
-      <span class="eyebrow">Start the conversation</span>
-      <h2>Let's begin.</h2>
-      <p class="sub">A conversation to find your new how. No pitch, no obligation — just a clear look at what's possible for your company.</p>
-      <a href="mailto:hello@startwithimago.com?subject=Starting%20a%20conversation%20with%20Imago&body=Hi%20Imago%20team%2C%0A%0AA%20bit%20about%20us%3A%0A%0ACompany%3A%20%0AIndustry%3A%20%0AWhat%20we%27re%20looking%20to%20change%3A%20%0A%0ALooking%20forward%20to%20connecting." class="btn">Send us an email <span class="btn-arrow">→</span></a>
+      <span class="eyebrow" data-i18n="cta_eyebrow">Start the conversation</span>
+      <h2 data-i18n="cta_h2">Let's begin.</h2>
+      <p class="sub" data-i18n="cta_sub">A conversation to find your new how. No pitch, no obligation — just a clear look at what's possible for your company.</p>
+      <a href="#" class="btn i18n-mailto" data-i18n="cta_btn">Send us an email <span class="btn-arrow">→</span></a>
       <div class="micro">hello@startwithimago.com</div>
     </div>
   </section>
@@ -362,8 +359,8 @@
   <!-- NEWS -->
   <section class="news wip" data-screen-label="In the news">
     <div class="wrap reveal">
-      <span class="eyebrow">Already underway</span>
-      <p class="kicker">The companies in these stories started somewhere, too.</p>
+      <span class="eyebrow" data-i18n="news_eyebrow">Already underway</span>
+      <p class="kicker" data-i18n="news_kicker">The companies in these stories started somewhere, too.</p>
     </div>
     <div class="marquee">
       <div class="mq-track" id="mq1"></div>
@@ -373,8 +370,8 @@
     </div>
     <div class="wrap reveal">
       <div class="news-foot">
-        <a href="mailto:hello@startwithimago.com?subject=Starting%20a%20conversation%20with%20Imago&body=Hi%20Imago%20team%2C%0A%0AA%20bit%20about%20us%3A%0A%0ACompany%3A%20%0AIndustry%3A%20%0AWhat%20we%27re%20looking%20to%20change%3A%20%0A%0ALooking%20forward%20to%20connecting." class="btn">Get in touch <span class="btn-arrow">→</span></a>
-        <span>Find where your company starts.</span>
+        <a href="#" class="btn i18n-mailto" data-i18n="news_foot_cta">Get in touch <span class="btn-arrow">→</span></a>
+        <span data-i18n="news_foot_text">Find where your company starts.</span>
       </div>
     </div>
   </section>
@@ -383,121 +380,292 @@
   <footer>
     <div class="wrap foot-inner">
       <div class="wordmark">Imago<b>.</b></div>
-      <div class="foot-meta">Evolving established companies into their AI-native form · © 2026</div>
+      <div class="foot-meta" data-i18n="footer_meta">Evolving established companies into their AI-native form · © 2026</div>
     </div>
   </footer>
 
 <script>
   document.body.classList.add("js");
 
+  // ---- translations ----
+  const MAILTO_EN = 'mailto:hello@startwithimago.com?subject=Starting%20a%20conversation%20with%20Imago&body=Hi%20Imago%20team%2C%0A%0AA%20bit%20about%20us%3A%0A%0ACompany%3A%20%0AIndustry%3A%20%0AWhat%20we%27re%20looking%20to%20change%3A%20%0A%0ALooking%20forward%20to%20connecting.';
+  const MAILTO_ES = 'mailto:hello@startwithimago.com?subject=Iniciando%20una%20conversaci%C3%B3n%20con%20Imago&body=Hola%20equipo%20de%20Imago%2C%0A%0AUn%20poco%20sobre%20nosotros%3A%0A%0AEmpresa%3A%20%0AIndustria%3A%20%0AQu%C3%A9%20queremos%20cambiar%3A%20%0A%0AQuedamos%20en%20contacto.';
+
+  const TRANSLATIONS = {
+    en: {
+      nav_what: 'What we do',
+      nav_work: 'How we work',
+      nav_why: 'Why Imago',
+      nav_cta: 'Get in touch',
+      hero_eyebrow: 'For established companies ready to modernize',
+      hero_sub: 'We help established companies discover how AI can transform the way they work — <strong>without changing what makes them, them.</strong>',
+      hero_cta: 'Get in touch <span class="btn-arrow">→</span>',
+      hero_ghost: 'See how we work',
+      what_eyebrow: 'What we do',
+      what_h2: 'We help you put AI at the <em>heart</em> of how you work.',
+      what_p1: 'Not a single tool. Not a one-off project that ends when we leave. We help your whole organization modernize — and build the muscle to <strong>keep modernizing long after we\'re gone.</strong>',
+      what_p2: 'We work beside your leadership to find where AI creates real, <strong>measurable</strong> leverage, prove what\'s actually worth doing, and turn it into how the company runs.',
+      princ_adaptive_label: 'Adaptive',
+      princ_adaptive_text: '<span class="negin">Not a product to install</span> — a company that keeps improving how it works.',
+      princ_lasting_label: 'Lasting',
+      princ_lasting_text: '<span class="negin">Not a pilot that fizzles</span> — a partnership that stays through execution.',
+      princ_yours_label: 'Yours',
+      princ_yours_text: '<span class="negin">Not advice in a deck</span> — a capability that lives with your team.',
+      work_eyebrow: 'How we work',
+      work_h2: 'A partnership, not a project.',
+      work_lead: 'We don\'t sell you a system and leave. <strong>We help your organization become one that can keep building.</strong>',
+      step1_title: 'Assess',
+      step1_text: 'We map how your company actually operates — where time, money, and momentum are lost — and identify the highest-leverage opportunities for AI to make a difference.',
+      step2_title: 'Design the roadmap',
+      step2_text: 'We build a transformation plan specific to your company, your team, and your capacity for change. No generic frameworks. No unnecessary complexity.',
+      step3_title: 'Stay through execution',
+      step3_text: 'We work alongside you through implementation — validating what\'s working, fixing what isn\'t, and building the internal capability to sustain it long after we\'re done.',
+      why_eyebrow: 'Why Imago',
+      why_h2: 'Built by people who built the technology.',
+      why_p1: 'Imago is led by two senior engineers from <strong>Meta</strong> and <strong>Google</strong> — roughly twelve years between them spent training the models, scaling the infrastructure, and building the teams behind them.',
+      why_p2: 'That means we understand AI from the inside: what\'s real, what\'s hype, and what it actually takes to make it work inside a company with real operations — not a demo.',
+      cred_meta_text: 'Trained &amp; shipped large-scale models in production.',
+      cred_google_text: 'Scaled infrastructure and the teams that run it.',
+      industries_label: 'Built for companies with real operations',
+      ind_manufacturing: 'Manufacturing',
+      ind_logistics: 'Logistics',
+      ind_distribution: 'Distribution',
+      ind_services: 'Professional services',
+      ind_yours: '+ your industry',
+      cta_eyebrow: 'Start the conversation',
+      cta_h2: 'Let\'s begin.',
+      cta_sub: 'A conversation to find your new how. No pitch, no obligation — just a clear look at what\'s possible for your company.',
+      cta_btn: 'Send us an email <span class="btn-arrow">→</span>',
+      news_eyebrow: 'Already underway',
+      news_kicker: 'The companies in these stories started somewhere, too.',
+      news_foot_cta: 'Get in touch <span class="btn-arrow">→</span>',
+      news_foot_text: 'Find where your company starts.',
+      footer_meta: 'Evolving established companies into their AI-native form · © 2026',
+    },
+    es: {
+      nav_what: 'Lo que hacemos',
+      nav_work: 'Cómo trabajamos',
+      nav_why: 'Por qué Imago',
+      nav_cta: 'Contáctanos',
+      hero_eyebrow: 'Para empresas establecidas listas para modernizarse',
+      hero_sub: 'Ayudamos a empresas establecidas a descubrir cómo la IA puede transformar su forma de trabajar — <strong>sin cambiar lo que las hace únicas.</strong>',
+      hero_cta: 'Contáctanos <span class="btn-arrow">→</span>',
+      hero_ghost: 'Ve cómo trabajamos',
+      what_eyebrow: 'Lo que hacemos',
+      what_h2: 'Te ayudamos a poner la IA en el <em>corazón</em> de cómo trabajas.',
+      what_p1: 'No una sola herramienta. No un proyecto que termina cuando nos vamos. Ayudamos a toda tu organización a modernizarse — y a desarrollar la capacidad de <strong>seguir modernizándose mucho después de que nos hayamos ido.</strong>',
+      what_p2: 'Trabajamos junto a tu liderazgo para encontrar dónde la IA genera un impacto real y <strong>medible</strong>, probamos lo que vale la pena hacer y lo convertimos en cómo opera la empresa.',
+      princ_adaptive_label: 'Adaptable',
+      princ_adaptive_text: '<span class="negin">No un producto que instalar</span> — una empresa que mejora constantemente su forma de trabajar.',
+      princ_lasting_label: 'Duradero',
+      princ_lasting_text: '<span class="negin">No un piloto que se desvanece</span> — una alianza que permanece durante la ejecución.',
+      princ_yours_label: 'Tuyo',
+      princ_yours_text: '<span class="negin">No consejos en una presentación</span> — una capacidad que vive con tu equipo.',
+      work_eyebrow: 'Cómo trabajamos',
+      work_h2: 'Una alianza, no un proyecto.',
+      work_lead: 'No te vendemos un sistema y nos vamos. <strong>Ayudamos a tu organización a convertirse en una que pueda seguir construyendo.</strong>',
+      step1_title: 'Evaluar',
+      step1_text: 'Mapeamos cómo opera realmente tu empresa — dónde se pierden tiempo, dinero e impulso — e identificamos las oportunidades de mayor impacto para que la IA marque la diferencia.',
+      step2_title: 'Diseñar la hoja de ruta',
+      step2_text: 'Construimos un plan de transformación específico para tu empresa, tu equipo y tu capacidad de cambio. Sin marcos genéricos. Sin complejidad innecesaria.',
+      step3_title: 'Acompañar durante la ejecución',
+      step3_text: 'Trabajamos junto a ti durante la implementación — validando lo que funciona, corrigiendo lo que no, y construyendo la capacidad interna para sostenerlo mucho después de que terminemos.',
+      why_eyebrow: 'Por qué Imago',
+      why_h2: 'Construido por quienes construyeron la tecnología.',
+      why_p1: 'Imago está liderado por dos ingenieros senior de <strong>Meta</strong> y <strong>Google</strong> — con aproximadamente doce años combinados entrenando los modelos, escalando la infraestructura y construyendo los equipos detrás de ellos.',
+      why_p2: 'Eso significa que entendemos la IA desde adentro: qué es real, qué es exagerado, y qué se necesita realmente para hacerla funcionar dentro de una empresa con operaciones reales — no una demo.',
+      cred_meta_text: 'Entrenó y lanzó modelos a gran escala en producción.',
+      cred_google_text: 'Escaló infraestructura y los equipos que la operan.',
+      industries_label: 'Construido para empresas con operaciones reales',
+      ind_manufacturing: 'Manufactura',
+      ind_logistics: 'Logística',
+      ind_distribution: 'Distribución',
+      ind_services: 'Servicios profesionales',
+      ind_yours: '+ tu industria',
+      cta_eyebrow: 'Inicia la conversación',
+      cta_h2: 'Comencemos.',
+      cta_sub: 'Una conversación para encontrar tu nuevo cómo. Sin presentación, sin compromiso — solo una mirada clara a lo que es posible para tu empresa.',
+      cta_btn: 'Escríbenos <span class="btn-arrow">→</span>',
+      news_eyebrow: 'Ya está en marcha',
+      news_kicker: 'Las empresas en estas historias también empezaron en algún lugar.',
+      news_foot_cta: 'Contáctanos <span class="btn-arrow">→</span>',
+      news_foot_text: 'Encuentra dónde empieza tu empresa.',
+      footer_meta: 'Evolucionando empresas establecidas hacia su forma nativa de IA · © 2026',
+    }
+  };
+
   // ---- news headlines ----
-  const ROW1 = [
-    ["Manufacturers cut weeks off production planning", "Industry Wire"],
-    ["The back office is quietly disappearing into software", "Mid-Market Report"],
-    ["Family-run firms become industry leaders again", "Business Daily"],
-    ["Logistics teams automate the paperwork that took days", "Trade Journal"],
-    ["AI moves from pilot to core operations", "Sector Review"],
-  ];
-  const ROW2 = [
-    ["Distribution margins climb as approvals go automatic", "Commerce Weekly"],
-    ["Decades of documents, finally searchable in seconds", "Ops Monthly"],
-    ["The new advantage isn't size — it's speed", "Strategy Brief"],
-    ["Established companies are reinventing how they run", "Enterprise Times"],
-    ["Quietly, the mid-market is modernizing", "Market Signal"],
-  ];
+  const NEWS = {
+    en: {
+      row1: [
+        ['Manufacturers cut weeks off production planning', 'Industry Wire'],
+        ['The back office is quietly disappearing into software', 'Mid-Market Report'],
+        ['Family-run firms become industry leaders again', 'Business Daily'],
+        ['Logistics teams automate the paperwork that took days', 'Trade Journal'],
+        ['AI moves from pilot to core operations', 'Sector Review'],
+      ],
+      row2: [
+        ['Distribution margins climb as approvals go automatic', 'Commerce Weekly'],
+        ['Decades of documents, finally searchable in seconds', 'Ops Monthly'],
+        ['The new advantage isn\'t size — it\'s speed', 'Strategy Brief'],
+        ['Established companies are reinventing how they run', 'Enterprise Times'],
+        ['Quietly, the mid-market is modernizing', 'Market Signal'],
+      ],
+    },
+    es: {
+      row1: [
+        ['Los fabricantes reducen semanas en su planificación de producción', 'Wire Industrial'],
+        ['La oficina administrativa desaparece silenciosamente hacia el software', 'Reporte del Mercado Medio'],
+        ['Empresas familiares vuelven a liderar sus industrias', 'Diario de Negocios'],
+        ['Equipos de logística automatizan el papeleo que tardaba días', 'Revista Comercial'],
+        ['La IA pasa de piloto a operaciones principales', 'Revisión Sectorial'],
+      ],
+      row2: [
+        ['Los márgenes de distribución suben con aprobaciones automáticas', 'Semanario de Comercio'],
+        ['Décadas de documentos, por fin buscables en segundos', 'Mensual de Operaciones'],
+        ['La nueva ventaja no es el tamaño — es la velocidad', 'Brief de Estrategia'],
+        ['Las empresas establecidas reinventan cómo operan', 'Tiempos Empresariales'],
+        ['En silencio, el mercado medio se está modernizando', 'Señal de Mercado'],
+      ],
+    }
+  };
+
   function fill(el, rows) {
     const item = ([t, s]) => `<span class="headline">${t}<span class="src">${s}</span></span>`;
-    el.innerHTML = rows.map(item).join("").repeat(2);
+    el.innerHTML = rows.map(item).join('').repeat(2);
   }
-  fill(document.getElementById("mq1"), ROW1);
-  fill(document.getElementById("mq2"), ROW2);
 
-  // ---- reveal on scroll (for .reveal elements) ----
+  // ---- language ----
+  let currentLang = localStorage.getItem('imago_lang') || 'en';
+
+  function applyLang(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+
+    // swap all text nodes
+    document.querySelectorAll('[data-i18n]').forEach(function(el) {
+      const val = TRANSLATIONS[lang][el.dataset.i18n];
+      if (val !== undefined) el.innerHTML = val;
+    });
+
+    // swap mailto hrefs
+    const mailto = lang === 'es' ? MAILTO_ES : MAILTO_EN;
+    document.querySelectorAll('.i18n-mailto').forEach(function(el) { el.href = mailto; });
+
+    // swap news
+    fill(document.getElementById('mq1'), NEWS[lang].row1);
+    fill(document.getElementById('mq2'), NEWS[lang].row2);
+
+    // update hero headline (tweaks-managed)
+    applyTweaks();
+
+    // update toggle label
+    document.getElementById('langBtn').textContent = lang === 'en' ? 'ES' : 'EN';
+
+    localStorage.setItem('imago_lang', lang);
+  }
+
+  document.getElementById('langBtn').addEventListener('click', function() {
+    applyLang(currentLang === 'en' ? 'es' : 'en');
+  });
+
+  // ---- reveal on scroll ----
   const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
-  }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
   // ---- nav slides in once you scroll past the in-hero wordmark ----
-  const navEl = document.querySelector(".nav");
-  const heroMark = document.querySelector(".hero-mark");
+  const navEl = document.querySelector('.nav');
+  const heroMark = document.querySelector('.hero-mark');
   const navIO = new IntersectionObserver(([e]) => {
-    navEl.classList.toggle("show", !e.isIntersecting);
-  }, { threshold: 0, rootMargin: "-12px 0px 0px 0px" });
+    navEl.classList.toggle('show', !e.isIntersecting);
+  }, { threshold: 0, rootMargin: '-12px 0px 0px 0px' });
   navIO.observe(heroMark);
 
   // ---- ADAPTIVE / LASTING / YOURS — trigger once on enter, then stay ----
-  const princEl = document.getElementById("princSection");
+  const princEl = document.getElementById('princSection');
   if (princEl) io.observe(princEl);
 
   // ---- Tweaks ----
   const HEADLINES = {
-    h_business: "Your business. New era. New <em>how</em>.",
-    h_era: "New era. New <em>how</em>.",
-    h_soul: "New era. New <em>how</em>. Same soul.",
-    h_you: "New era. New <em>how</em>. Same you.",
-    h_next: "Your next era. Your new <em>how</em>.",
+    en: {
+      h_business: 'Your business. New era. New <em>how</em>.',
+      h_era: 'New era. New <em>how</em>.',
+      h_soul: 'New era. New <em>how</em>. Same soul.',
+      h_you: 'New era. New <em>how</em>. Same you.',
+      h_next: 'Your next era. Your new <em>how</em>.',
+    },
+    es: {
+      h_business: 'Tu negocio. Nueva era. Nuevo <em>cómo</em>.',
+      h_era: 'Nueva era. Nuevo <em>cómo</em>.',
+      h_soul: 'Nueva era. Nuevo <em>cómo</em>. Misma esencia.',
+      h_you: 'Nueva era. Nuevo <em>cómo</em>. Los mismos tú.',
+      h_next: 'Tu próxima era. Tu nuevo <em>cómo</em>.',
+    }
   };
-  const TWK_DEFAULTS = { heroHeadline: "h_business", heroBg: "flat", heroCue: "chevron" };
+  const TWK_DEFAULTS = { heroHeadline: 'h_business', heroBg: 'flat', heroCue: 'chevron' };
   const TWK_CONFIG = [
-    { section: "Hero" },
-    { type: "select", key: "heroHeadline", label: "Headline", options: [
-      { value: "h_business", label: "Your business. New era. New how." },
-      { value: "h_era", label: "New era. New how." },
-      { value: "h_soul", label: "New era. New how. Same soul." },
-      { value: "h_you", label: "New era. New how. Same you." },
-      { value: "h_next", label: "Your next era. Your new how." },
+    { section: 'Hero' },
+    { type: 'select', key: 'heroHeadline', label: 'Headline', options: [
+      { value: 'h_business', label: 'Your business. New era. New how.' },
+      { value: 'h_era', label: 'New era. New how.' },
+      { value: 'h_soul', label: 'New era. New how. Same soul.' },
+      { value: 'h_you', label: 'New era. New how. Same you.' },
+      { value: 'h_next', label: 'Your next era. Your new how.' },
     ]},
-    { type: "radio", key: "heroBg", label: "Hero background", options: [
-      { value: "flat", label: "Flat" }, { value: "glow", label: "Subtle glow" },
+    { type: 'radio', key: 'heroBg', label: 'Hero background', options: [
+      { value: 'flat', label: 'Flat' }, { value: 'glow', label: 'Subtle glow' },
     ]},
-    { type: "radio", key: "heroCue", label: "Scroll cue", options: [
-      { value: "chevron", label: "Chevron" }, { value: "line", label: "Line" }, { value: "none", label: "None" },
+    { type: 'radio', key: 'heroCue', label: 'Scroll cue', options: [
+      { value: 'chevron', label: 'Chevron' }, { value: 'line', label: 'Line' }, { value: 'none', label: 'None' },
     ]},
   ];
-  let twk = { ...TWK_DEFAULTS, ...(JSON.parse(localStorage.getItem("imago_tweaks") || "{}")) };
+  let twk = { ...TWK_DEFAULTS, ...(JSON.parse(localStorage.getItem('imago_tweaks') || '{}')) };
 
   function applyTweaks() {
-    const h = document.getElementById("heroHeadline");
-    if (h) h.innerHTML = HEADLINES[twk.heroHeadline] || HEADLINES.h_business;
-    document.querySelector(".hero").classList.toggle("glow", twk.heroBg === "glow");
-    const cue = document.getElementById("scrollCue");
-    if (cue) cue.innerHTML = twk.heroCue === "chevron" ? `<span class="cue-chev"></span>` : (twk.heroCue === "line" ? `<span class="cue-line"></span>` : "");
+    const h = document.getElementById('heroHeadline');
+    if (h) h.innerHTML = (HEADLINES[currentLang] || HEADLINES.en)[twk.heroHeadline] || HEADLINES.en.h_business;
+    document.querySelector('.hero').classList.toggle('glow', twk.heroBg === 'glow');
+    const cue = document.getElementById('scrollCue');
+    if (cue) cue.innerHTML = twk.heroCue === 'chevron' ? '<span class="cue-chev"></span>' : (twk.heroCue === 'line' ? '<span class="cue-line"></span>' : '');
   }
   function setTweak(k, v) {
-    twk[k] = v; localStorage.setItem("imago_tweaks", JSON.stringify(twk));
+    twk[k] = v; localStorage.setItem('imago_tweaks', JSON.stringify(twk));
     applyTweaks(); renderTweakControls();
-    window.parent.postMessage({ type: "__edit_mode_set_keys", edits: { [k]: v } }, "*");
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { [k]: v } }, '*');
   }
 
-  const panel = document.createElement("div");
-  panel.className = "twk"; panel.hidden = true;
-  panel.innerHTML = `<div class="twk-hd"><b>Tweaks</b><button class="twk-x" aria-label="Close">✕</button></div><div class="twk-body" id="twkBody"></div>`;
+  const panel = document.createElement('div');
+  panel.className = 'twk'; panel.hidden = true;
+  panel.innerHTML = '<div class="twk-hd"><b>Tweaks</b><button class="twk-x" aria-label="Close">✕</button></div><div class="twk-body" id="twkBody"></div>';
   document.body.appendChild(panel);
-  const twkBody = panel.querySelector("#twkBody");
+  const twkBody = panel.querySelector('#twkBody');
   function renderTweakControls() {
-    twkBody.innerHTML = "";
+    twkBody.innerHTML = '';
     TWK_CONFIG.forEach(item => {
-      if (item.section) { const s = document.createElement("div"); s.className = "twk-sect"; s.textContent = item.section; twkBody.appendChild(s); return; }
-      const ctl = document.createElement("div"); ctl.className = "twk-ctl";
-      const lab = document.createElement("label"); lab.textContent = item.label; ctl.appendChild(lab);
-      if (item.type === "select") {
-        const sel = document.createElement("select"); sel.className = "twk-field";
-        item.options.forEach(o => { const op = document.createElement("option"); op.value = o.value; op.textContent = o.label; if (twk[item.key] === o.value) op.selected = true; sel.appendChild(op); });
+      if (item.section) { const s = document.createElement('div'); s.className = 'twk-sect'; s.textContent = item.section; twkBody.appendChild(s); return; }
+      const ctl = document.createElement('div'); ctl.className = 'twk-ctl';
+      const lab = document.createElement('label'); lab.textContent = item.label; ctl.appendChild(lab);
+      if (item.type === 'select') {
+        const sel = document.createElement('select'); sel.className = 'twk-field';
+        item.options.forEach(o => { const op = document.createElement('option'); op.value = o.value; op.textContent = o.label; if (twk[item.key] === o.value) op.selected = true; sel.appendChild(op); });
         sel.onchange = () => setTweak(item.key, sel.value); ctl.appendChild(sel);
-      } else if (item.type === "radio") {
-        const seg = document.createElement("div"); seg.className = "twk-seg";
-        item.options.forEach(o => { const b = document.createElement("button"); b.textContent = o.label; if (twk[item.key] === o.value) b.classList.add("on"); b.onclick = () => setTweak(item.key, o.value); seg.appendChild(b); });
+      } else if (item.type === 'radio') {
+        const seg = document.createElement('div'); seg.className = 'twk-seg';
+        item.options.forEach(o => { const b = document.createElement('button'); b.textContent = o.label; if (twk[item.key] === o.value) b.classList.add('on'); b.onclick = () => setTweak(item.key, o.value); seg.appendChild(b); });
         ctl.appendChild(seg);
       }
       twkBody.appendChild(ctl);
     });
   }
   renderTweakControls();
-  panel.querySelector(".twk-x").onclick = () => { panel.hidden = true; window.parent.postMessage({ type: "__edit_mode_dismissed" }, "*"); };
-  window.addEventListener("message", e => { const t = e?.data?.type; if (t === "__activate_edit_mode") panel.hidden = false; else if (t === "__deactivate_edit_mode") panel.hidden = true; });
-  window.parent.postMessage({ type: "__edit_mode_available" }, "*");
-  applyTweaks();
+  panel.querySelector('.twk-x').onclick = () => { panel.hidden = true; window.parent.postMessage({ type: '__edit_mode_dismissed' }, '*'); };
+  window.addEventListener('message', e => { const t = e?.data?.type; if (t === '__activate_edit_mode') panel.hidden = false; else if (t === '__deactivate_edit_mode') panel.hidden = true; });
+  window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+  // ---- init ----
+  applyLang(currentLang);
 </script>
 </body>
 </html>
