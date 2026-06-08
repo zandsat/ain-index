@@ -78,9 +78,12 @@
   .nav-cta { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-dark); border: 1px solid oklch(0.95 0.012 265 / 0.3); padding: 9px 16px; border-radius: 4px; white-space: nowrap; }
   .nav-cta:hover { border-color: var(--cobalt-bright); color: var(--cobalt-bright); }
 
-  /* language toggle */
-  .lang-btn { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; background: none; border: 1px solid oklch(0.95 0.012 265 / 0.22); color: var(--on-dark-soft); padding: 7px 11px; border-radius: 4px; cursor: pointer; transition: border-color .2s, color .2s; }
-  .lang-btn:hover { border-color: var(--cobalt-bright); color: var(--cobalt-bright); }
+  /* language flag switcher */
+  .lang-flags { position: absolute; top: 32px; right: 56px; display: flex; gap: 6px; align-items: center; z-index: 10; }
+  .flag-btn { background: none; border: 2px solid transparent; border-radius: 6px; cursor: pointer; font-size: 26px; line-height: 1; padding: 4px 6px; opacity: 0.45; transition: opacity .2s, border-color .2s, transform .15s; }
+  .flag-btn:hover { opacity: 0.75; transform: scale(1.08); }
+  .flag-btn.active { opacity: 1; border-color: oklch(0.95 0.012 265 / 0.3); transform: scale(1.08); }
+  @media (max-width: 860px) { .lang-flags { right: 24px; top: 24px; } }
 
   /* ---------------- HERO ---------------- */
   .hero { background: var(--navy); color: var(--on-dark); position: relative; overflow: hidden; padding: 0; min-height: 88vh; display: flex; align-items: center; }
@@ -229,7 +232,6 @@
         <a href="#what" data-i18n="nav_what">What we do</a>
         <a href="#work" data-i18n="nav_work">How we work</a>
         <a href="#why" data-i18n="nav_why">Why Imago</a>
-        <button class="lang-btn" id="langBtn" aria-label="Switch language">ES</button>
         <a href="#" class="nav-cta i18n-mailto" data-i18n="nav_cta">Get in touch</a>
       </div>
     </div>
@@ -237,6 +239,10 @@
 
   <!-- HERO -->
   <header class="hero" data-screen-label="Hero">
+    <div class="lang-flags">
+      <button class="flag-btn active" id="flagEN" title="English (Canada)" aria-label="Switch to English">🇨🇦</button>
+      <button class="flag-btn" id="flagES" title="Español (México)" aria-label="Cambiar a español">🇲🇽</button>
+    </div>
     <div class="wrap hero-inner">
       <span class="eyebrow" data-i18n="hero_eyebrow">For established companies ready to modernize</span>
       <div class="hero-mark">Imago<b>.</b></div>
@@ -559,15 +565,15 @@
     // update hero headline (tweaks-managed)
     applyTweaks();
 
-    // update toggle label
-    document.getElementById('langBtn').textContent = lang === 'en' ? 'ES' : 'EN';
+    // update flag active states
+    document.getElementById('flagEN').classList.toggle('active', lang === 'en');
+    document.getElementById('flagES').classList.toggle('active', lang === 'es');
 
     localStorage.setItem('imago_lang', lang);
   }
 
-  document.getElementById('langBtn').addEventListener('click', function() {
-    applyLang(currentLang === 'en' ? 'es' : 'en');
-  });
+  document.getElementById('flagEN').addEventListener('click', function() { applyLang('en'); });
+  document.getElementById('flagES').addEventListener('click', function() { applyLang('es'); });
 
   // ---- reveal on scroll ----
   const io = new IntersectionObserver((entries) => {
