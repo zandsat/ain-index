@@ -582,14 +582,14 @@
     var tracks = marquee.querySelectorAll('.mq-track');
     marquee.addEventListener('mouseenter', function() {
       tracks.forEach(function(t) {
-        var dur = parseFloat(getComputedStyle(t).animationDuration);
-        t.dataset.baseDur = dur;
-        t.style.animationDuration = (dur * 4) + 's';
+        var anim = t.getAnimations()[0];
+        if (anim) anim.playbackRate = 0.2;
       });
     });
     marquee.addEventListener('mouseleave', function() {
       tracks.forEach(function(t) {
-        t.style.animationDuration = t.dataset.baseDur ? t.dataset.baseDur + 's' : '';
+        var anim = t.getAnimations()[0];
+        if (anim) anim.playbackRate = 1;
       });
     });
   });
