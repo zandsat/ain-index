@@ -29,6 +29,12 @@
   .article-body { padding: 44px 0 72px; }
   .article-body h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(22px, 2.4vw, 30px); line-height: 1.15; letter-spacing: -0.02em; margin: 52px 0 18px; color: var(--ink); }
   .article-body p { font-size: 18px; line-height: 1.75; font-weight: 300; color: var(--ink-soft); } .article-body strong { font-weight: 500; color: var(--ink); }
+  .inline-cta { background: var(--cobalt); border-radius: 12px; padding: 36px 44px; display: flex; align-items: center; justify-content: space-between; gap: 32px; margin: 52px 0; }
+  .inline-cta-left h3 { font-family: var(--sans); font-weight: 700; font-size: clamp(17px, 1.8vw, 21px); color: #fff; margin: 0 0 8px; line-height: 1.25; }
+  .inline-cta-left p { font-size: 15px; color: oklch(0.92 0.04 262); font-weight: 300; margin: 0; line-height: 1.5; }
+  .inline-cta-btn { background: #fff; color: var(--ink); font-family: var(--sans); font-size: 15px; font-weight: 700; padding: 14px 28px; border-radius: 999px; border: none; cursor: pointer; white-space: nowrap; text-decoration: none; display: inline-block; transition: opacity .2s; flex-shrink: 0; }
+  .inline-cta-btn:hover { opacity: 0.88; }
+  @media (max-width: 560px) { .inline-cta { flex-direction: column; align-items: flex-start; padding: 28px 24px; } }
   .article-cta { background: var(--navy); color: var(--on-dark); padding: clamp(52px, 7vw, 80px) 0; text-align: center; }
   .article-cta h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(28px, 3.5vw, 42px); letter-spacing: -0.02em; margin: 0 0 14px; } .article-cta p { font-size: 17px; color: var(--on-dark-soft); font-weight: 300; margin: 0 0 32px; }
   footer { background: oklch(0.17 0.04 264); color: var(--on-dark-soft); padding: 52px 0; } .foot-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; } .foot-meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
@@ -68,6 +74,14 @@
     <p>The assumptions underlying that deal are eroding quickly. The gap between what a large company can know and what a small company can know has collapsed. A well-configured AI system can give a 40-person operations team the same analytical depth that a 400-person company achieves with a dedicated analytics function. The question is no longer whether you have the resources to answer a question. It's whether you're asking the right questions fast enough.</p>
     <p>And here is where the liability kicks in. <strong>Large organisations move slowly.</strong> Not because they're inefficient (often the opposite) but because scale brings coordination overhead. A decision that takes a mid-market company two days to make might take a large enterprise two months. Three rounds of stakeholder reviews. A cross-functional working group. A pilot proposal that needs board-level sign-off.</p>
     <p>In a market where conditions are stable and competitors move at similar speeds, this overhead is manageable. In a market being reshaped by AI adoption, where a competitor can prototype and deploy a new approach in weeks, it becomes a structural disadvantage.</p>
+
+    <div class="inline-cta">
+      <div class="inline-cta-left">
+        <h3>Wondering how fast you could actually move?</h3>
+        <p>We help mid-market companies compress the gap between insight and action.</p>
+      </div>
+      <a href="#" class="inline-cta-btn intake-trigger">Talk to our team</a>
+    </div>
 
     <h2>What agile companies do differently</h2>
     <p>The companies pulling away right now share a common trait: they've compressed the feedback loop between a problem appearing and a decision being made about it.</p>
