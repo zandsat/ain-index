@@ -259,6 +259,7 @@
   .modal-backdrop { position: fixed; inset: 0; z-index: 100; background: oklch(0.205 0.045 264 / 0.65); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); opacity: 0; transition: opacity .3s; pointer-events: none; }
   .modal-backdrop.open { opacity: 1; pointer-events: auto; }
   .modal-wrap { position: fixed; inset: 0; z-index: 101; display: flex; align-items: flex-start; justify-content: center; padding: 20px; pointer-events: none; overflow-y: auto; overscroll-behavior: contain; }
+  .modal-wrap.open { pointer-events: auto; }
   .modal-wrap[hidden] { display: none !important; }
   .modal-card { background: var(--paper); border-radius: 14px; box-shadow: 0 28px 72px oklch(0.17 0.04 264 / 0.36), 0 6px 20px oklch(0 0 0 / 0.08); width: 100%; max-width: 548px; margin: auto; padding: 38px 44px; transform: translateY(22px) scale(0.97); transition: transform .38s cubic-bezier(.16,1,.3,1), opacity .3s; opacity: 0; pointer-events: auto; }
   .modal-wrap.open .modal-card { transform: none; opacity: 1; }
@@ -927,7 +928,12 @@
     });
     document.getElementById('if_fname').focus();
     intakeOpenTime = Date.now();
-    document.body.style.overflow = 'hidden';
+    // iOS Safari ignores overflow:hidden on body; position:fixed is the reliable lock
+    var scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = '-' + scrollY + 'px';
+    document.body.style.width = '100%';
+    document.body.dataset.scrollY = scrollY;
   }
 
   function closeIntake() {
@@ -936,7 +942,12 @@
     modal.classList.remove('open');
     backdrop.classList.remove('open');
     setTimeout(function() { modal.hidden = true; }, 380);
-    document.body.style.overflow = '';
+    // Restore scroll position
+    var scrollY = parseInt(document.body.dataset.scrollY || '0', 10);
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    window.scrollTo(0, scrollY);
   }
 
   document.querySelectorAll('.intake-trigger').forEach(function(el) {
