@@ -133,24 +133,22 @@
   .wip::after { content: "Work in progress · refining next"; position: absolute; top: 16px; right: 16px; z-index: 6; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; background: oklch(0.82 0.13 78); color: oklch(0.28 0.06 60); padding: 6px 12px; border-radius: 999px; pointer-events: none; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
 
   /* ---------------- WORK ---------------- */
-  .work { background: var(--navy); color: var(--on-dark); }
-  .work .h2 { color: var(--on-dark); max-width: 14ch; }
-  .work .lead { color: var(--on-dark-soft); max-width: 46ch; margin-top: 22px; }
-  .work .lead strong { color: var(--on-dark); font-weight: 400; }
+  .work { background: var(--paper); color: var(--ink); }
   .f-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-bottom: 50px; }
-  .f-hdr { font-family: var(--serif); font-weight: 300; font-size: clamp(34px, 4.2vw, 54px); color: var(--on-dark); letter-spacing: -0.02em; white-space: nowrap; }
-  .f-hdr b { font-style: italic; font-weight: 400; color: var(--cobalt-bright); }
+  .f-hdr { font-family: var(--serif); font-weight: 300; font-size: clamp(34px, 4.2vw, 54px); color: var(--ink); letter-spacing: -0.02em; white-space: nowrap; }
+  .f-hdr b { font-style: italic; font-weight: 400; color: var(--cobalt); }
   .f-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; }
   .f-col { position: relative; }
-  .f-bn { font-family: var(--serif); font-weight: 300; font-size: clamp(72px, 7vw, 100px); line-height: 0.8; color: var(--cobalt-bright); letter-spacing: -0.03em; }
-  .f-rule { height: 1px; background: oklch(0.95 0.012 265 / 0.14); margin: 28px 0; position: relative; }
-  .f-rule::before { content: ""; position: absolute; left: 0; top: -2.5px; width: 6px; height: 6px; border-radius: 50%; background: var(--cobalt-bright); }
-  .f-col h3 { font-family: var(--serif); font-weight: 400; font-size: 32px; margin: 0 0 16px; color: var(--on-dark); }
-  .f-col p { font-size: 17.5px; line-height: 1.6; color: var(--on-dark-soft); margin: 0; }
+  .f-bn { font-family: var(--serif); font-weight: 300; font-size: clamp(72px, 7vw, 100px); line-height: 0.8; color: var(--cobalt); letter-spacing: -0.03em; }
+  .f-rule { height: 1px; background: var(--line); margin: 28px 0; position: relative; }
+  .f-rule::before { content: ""; position: absolute; left: 0; top: -2.5px; width: 6px; height: 6px; border-radius: 50%; background: var(--cobalt); }
+  .f-col h3 { font-family: var(--serif); font-weight: 400; font-size: 32px; margin: 0 0 16px; color: var(--ink); }
+  .f-col p { font-size: 17.5px; line-height: 1.6; color: var(--ink-soft); margin: 0; }
   @media (max-width: 900px) { .f-grid { grid-template-columns: 1fr; gap: 36px; } .f-hdr { white-space: normal; } }
 
   /* ---------------- WHY ---------------- */
-  .why { background: var(--paper); }
+  .why { background: var(--navy); color: var(--on-dark); }
+  .why .h2 { color: var(--on-dark); }
   .why-grid { margin-top: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
   .why .prose p { font-size: 19px; line-height: 1.62; font-weight: 300; color: var(--ink-soft); }
   .why .prose strong { color: var(--ink); font-weight: 500; }
@@ -164,6 +162,45 @@
   .ind-tags { display: flex; flex-wrap: wrap; gap: 8px; }
   .ind-tags span { font-size: 14px; color: var(--ink-soft); border: 1px dashed var(--line); border-radius: 5px; padding: 6px 12px; }
   .placeholder-note { font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); margin-top: 14px; letter-spacing: 0.02em; }
+
+  /* trust line */
+  .trust { margin-top: 26px; max-width: 62ch; }
+  .trust p { font-size: 19px; line-height: 1.62; font-weight: 300; color: var(--on-dark-soft); margin: 0; }
+  .trust strong { color: var(--on-dark); font-weight: 500; }
+
+  /* industry explorer */
+  .explorer { margin-top: 66px; }
+  .exp-lab { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cobalt-bright); margin-bottom: 18px; }
+  .exp-tabs { display: flex; flex-wrap: wrap; gap: 10px; }
+  .exp-tab { font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--on-dark-soft); background: oklch(0.95 0.012 265 / 0.06); border: 1px solid oklch(0.95 0.012 265 / 0.18); border-radius: 999px; padding: 10px 20px; cursor: pointer; transition: background .2s, border-color .2s, color .2s; }
+  .exp-tab:hover { border-color: var(--cobalt-bright); color: var(--on-dark); }
+  .exp-tab.on { background: var(--cobalt); border-color: var(--cobalt); color: #fff; }
+  /* industry explorer — topic accordion + media */
+  .exp2-body { margin-top: 34px; display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: start; }
+  .exp2-topics { display: flex; flex-direction: column; border-top: 1px solid oklch(0.95 0.012 265 / 0.16); }
+  .exp2-topic { border-bottom: 1px solid oklch(0.95 0.012 265 / 0.16); }
+  .exp2-th { width: 100%; text-align: left; background: none; border: 0; cursor: pointer; padding: 20px 2px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: var(--serif); font-weight: 400; font-size: 21px; color: var(--on-dark-soft); transition: color .2s; }
+  .exp2-th:hover { color: var(--on-dark); }
+  .exp2-th .tnum { font-family: var(--mono); font-size: 12px; color: var(--cobalt-bright); margin-right: 14px; }
+  .exp2-th .chev { color: var(--on-dark-soft); font-size: 20px; transition: transform .25s, color .2s; }
+  .exp2-topic.open .exp2-th { color: var(--on-dark); }
+  .exp2-topic.open .exp2-th .chev { transform: rotate(90deg); color: var(--cobalt-bright); }
+  .exp2-tbody { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+  .exp2-topic.open .exp2-tbody { max-height: 600px; }
+  .exp2-tbody-inner { padding: 2px 2px 26px; }
+  .exp2-tbody p { font-size: 15.5px; line-height: 1.55; margin: 0; }
+  .exp2-tbody p + p { margin-top: 12px; }
+  .exp2-tbody .t-desc { font-size: 16px; line-height: 1.62; color: var(--on-dark-soft); margin-bottom: 18px; }
+  .exp2-tbody .t-pain { color: var(--on-dark-soft); }
+  .exp2-tbody .t-gain { color: var(--on-dark); }
+  .exp2-tbody .pain-lab, .exp2-tbody .gain-lab { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; margin-right: 10px; }
+  .exp2-tbody .pain-lab { color: var(--on-dark-soft); }
+  .exp2-tbody .gain-lab { color: var(--cobalt-bright); }
+  .exp2-media { position: sticky; top: 100px; }
+  .exp2-fig { aspect-ratio: 4 / 3; border: 1px solid oklch(0.95 0.012 265 / 0.18); border-radius: 12px; background: linear-gradient(135deg, var(--navy-2), oklch(0.4 0.12 262 / 0.55)); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+  .exp2-fig .obj { font-size: clamp(64px, 9vw, 104px); line-height: 1; }
+  .exp2-fig .cap { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-dark-soft); }
+  @media (max-width: 760px) { .exp2-body { grid-template-columns: 1fr; gap: 28px; } .exp2-media { position: static; order: -1; } }
 
   /* ---------------- CTA ---------------- */
   .cta { background: var(--cobalt); color: #fff; text-align: center; }
@@ -274,8 +311,30 @@
     </div>
   </section>
 
+  <!-- WHY -->
+  <section class="why dark" id="why">
+    <div class="wrap">
+      <div class="col reveal">
+        <span class="eyebrow">Why Imago</span>
+        <h2 class="h2">From the people who built AI.</h2>
+        <div class="trust">
+          <p>Led by ex-engineering leaders from <strong>Meta</strong> and <strong>Google</strong> — over a decade building the AI behind products used by millions. Now focused entirely on making it work inside companies like yours.</p>
+        </div>
+      </div>
+
+      <div class="explorer reveal">
+        <div class="exp-lab">Where AI changes everything — pick your world</div>
+        <div class="exp-tabs" id="expTabs2"></div>
+        <div class="exp2-body">
+          <div class="exp2-topics" id="expTopics2"></div>
+          <div class="exp2-media" id="expMedia2"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- WORK -->
-  <section class="work dark" id="work">
+  <section class="work" id="work">
     <div class="wrap">
       <div class="f-head reveal">
         <span class="eyebrow">How we work</span>
@@ -285,39 +344,6 @@
         <div class="f-col reveal"><div class="f-bn">01</div><div class="f-rule"></div><h3>Learn the business</h3><p>We sit with your team and look at how the work really flows — finding where time and money slip away, and the clearest places AI can win back the most.</p></div>
         <div class="f-col reveal"><div class="f-bn">02</div><div class="f-rule"></div><h3>Prove a better way</h3><p>In a hands-on workshop, we take one real piece of your work and reshape how it gets done — so you feel the new way for yourself, not just watch a demo.</p></div>
         <div class="f-col reveal"><div class="f-bn">03</div><div class="f-rule"></div><h3>Put it to work</h3><p>We don't stop at the proof. We work beside you to bring that same shift to the rest of the business — process by process — and build your team's ability to keep going without us.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WHY -->
-  <section class="why wip" id="why">
-    <div class="wrap">
-      <div class="col reveal">
-        <span class="eyebrow">Why Imago</span>
-        <h2 class="h2">Built by people who built the technology.</h2>
-      </div>
-      <div class="why-grid">
-        <div class="prose reveal">
-          <p>Imago is led by two senior engineers from <strong>Meta</strong> and <strong>Google</strong> — roughly twelve years between them spent training the models, scaling the infrastructure, and building the teams behind them.</p>
-          <p>That means we understand AI from the inside: what's real, what's hype, and what it actually takes to make it work inside a company with real operations — not a demo.</p>
-        </div>
-        <div class="cred-card reveal">
-          <div class="row">
-            <span class="cred-badge">Ex-Meta</span>
-            <p>Trained &amp; shipped large-scale models in production.</p>
-          </div>
-          <div class="row">
-            <span class="cred-badge">Ex-Google</span>
-            <p>Scaled infrastructure and the teams that run it.</p>
-          </div>
-          <div class="industries">
-            <div class="lab">Built for companies with real operations</div>
-            <div class="ind-tags">
-              <span>Manufacturing</span><span>Logistics</span><span>Distribution</span><span>Professional services</span><span>+ your industry</span>
-            </div>
-            <div class="placeholder-note">↳ placeholder — swap in named founders &amp; target industries</div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -409,6 +435,261 @@
     navEl.classList.toggle('show', !e.isIntersecting);
   }, { threshold: 0, rootMargin: '-12px 0px 0px 0px' });
   navIO.observe(document.querySelector('.hero-mark'));
+
+  // ---- industry explorer ----
+  const INDUSTRIES = [
+    {
+      label: 'Manufacturing',
+      intro: `Decades of setup and troubleshooting know-how, locked in a few veterans' heads — and a custom quote still takes <em>days</em>.`,
+      pain: [
+        `The know-how that keeps lines running lives with operators nearing retirement`,
+        `Quoting custom or low-volume jobs means an estimator digging through old jobs for days`,
+        `The production schedule gets rebuilt by hand the moment a machine or order slips`,
+        `Defects surface at final inspection, after the scrap and rework cost is already sunk`,
+      ],
+      gain: [
+        `A searchable assistant trained on your manuals, past jobs, and floor know-how`,
+        `Quotes drafted from prior jobs, drawings, and live material costs in minutes`,
+        `The schedule re-plans itself the moment a machine, order, or material changes`,
+        `Vision and sensor checks catch defects on the line, not at final inspection`,
+      ],
+    },
+    {
+      label: 'Logistics & transport',
+      intro: `Your best dispatchers run the whole operation <em>in their heads</em> — and the paperwork never stops.`,
+      pain: [
+        `Routing, exceptions, and driver calls handled from memory by a few key people`,
+        `Rate cons, BOLs, customs docs, and PODs re-keyed by hand across systems`,
+        `Detention, deadhead, and accessorials quietly eat margin with no clear view`,
+        `Endless "where is my freight?" calls pull staff off real work all day`,
+      ],
+      gain: [
+        `Optimized routing and early warnings on loads about to go sideways`,
+        `Documents read, matched, and entered automatically, end to end`,
+        `Margin leaks surfaced across every lane, load, and customer`,
+        `Instant, automated status answers for customers and brokers`,
+      ],
+    },
+    {
+      label: 'Distribution & wholesale',
+      intro: `Pricing, approvals, and product answers all bottleneck through a <em>handful of people</em>.`,
+      pain: [
+        `Custom quotes and credit approvals wait on one or two overloaded people`,
+        `Inside sales answer the same stock, lead-time, and spec questions all day`,
+        `Demand is forecast by gut, leaving cash in dead stock or lost to stockouts`,
+        `Order entry from emailed and faxed POs is slow and error-prone`,
+      ],
+      gain: [
+        `Quote and approve automatically, within the margins and rules you set`,
+        `An assistant that answers product, stock, and order questions instantly`,
+        `Forecasts built on real demand signals, not last year plus a guess`,
+        `Emailed POs read and entered into your ERP without manual keying`,
+      ],
+    },
+    {
+      label: 'Construction',
+      intro: `Bids, RFIs, and change orders pile up — while your best people drown in <em>paperwork</em>.`,
+      pain: [
+        `Estimating new bids means re-reading huge plan sets and specs by hand`,
+        `RFIs, submittals, and change orders tracked across email, spreadsheets, and memory`,
+        `Job knowledge and lessons learned walk off site with each foreman`,
+        `Field-to-office reporting runs days behind, so problems surface too late`,
+      ],
+      gain: [
+        `Plans and specs read automatically to speed up takeoffs and bids`,
+        `RFIs and submittals drafted, logged, and chased without the admin`,
+        `A searchable record of how every past job was actually built`,
+        `Daily field reports turned into instant, office-ready summaries`,
+      ],
+    },
+    {
+      label: 'Field services',
+      intro: `Your techs are great in the field — but scheduling, quoting, and follow-up <em>fall through the cracks</em>.`,
+      pain: [
+        `Dispatchers play Tetris with jobs, skills, parts, and traffic all day`,
+        `Quotes and invoices get written up after hours, so collection drags`,
+        `Skill varies tech to tech — the newest hire cannot do what the veteran does`,
+        `Maintenance contracts and follow-up work slip because no one chased them`,
+      ],
+      gain: [
+        `Smart scheduling that matches the right tech, parts, and route automatically`,
+        `Quotes and invoices generated on site, right after the work`,
+        `An assistant that walks any tech through diagnosis and repair`,
+        `Service reminders and renewals that follow up on their own`,
+      ],
+    },
+    {
+      label: 'Professional services',
+      intro: `Your most expensive people spend the day on <em>drafting and admin</em>, not clients.`,
+      pain: [
+        `Senior expertise burned on first-draft documents, research, and review`,
+        `Decades of work buried across past files, matters, and inboxes`,
+        `Billable hours lost to timekeeping, scheduling, and status updates`,
+        `Onboarding a new hire to "how we do it here" takes months`,
+      ],
+      gain: [
+        `First-pass drafts, research, and reviews in minutes — experts just refine`,
+        `Every past document and decision instantly searchable and reusable`,
+        `Notes, timekeeping, and status updates handled automatically`,
+        `New hires productive fast, with the firm's knowledge at their fingertips`,
+      ],
+    },
+    {
+      label: 'Healthcare practices',
+      intro: `Clinicians spend more time on <em>documentation and phones</em> than with patients.`,
+      pain: [
+        `Notes, charting, and coding eat hours after every clinic day`,
+        `The front desk is buried in scheduling, reminders, and insurance questions`,
+        `Prior authorizations and claim denials drain staff time and cash flow`,
+        `Patient messages and results follow-up pile up faster than staff can clear`,
+      ],
+      gain: [
+        `Visit notes and coding drafted from the conversation, ready to review`,
+        `Scheduling, reminders, and routine questions handled automatically`,
+        `Prior auths and claims prepared and checked before they get denied`,
+        `Patient questions triaged and answered, with staff kept in the loop`,
+      ],
+    },
+    {
+      label: 'Insurance & brokerage',
+      intro: `Submissions, renewals, and service requests bury your team in <em>documents</em>.`,
+      pain: [
+        `Submissions and applications re-keyed from PDFs, emails, and ACORD forms`,
+        `Renewals handled reactively, so accounts slip or get under-served`,
+        `Quoting across carriers means hours of manual comparison`,
+        `Certificates and routine service requests handled one slow email at a time`,
+      ],
+      gain: [
+        `Applications and forms read and entered automatically`,
+        `Renewals flagged early, with the prep already done`,
+        `Carrier quotes gathered and compared in minutes`,
+        `Certificates and service requests answered instantly`,
+      ],
+    },
+    {
+      label: 'Real estate & property',
+      intro: `Leasing, maintenance, and owner reporting all run on <em>manual follow-up</em>.`,
+      pain: [
+        `Leasing inquiries and tenant questions answered one email at a time`,
+        `Maintenance requests triaged and dispatched by hand`,
+        `Owner and investor reporting rebuilt manually every month`,
+        `Lease terms and documents scattered, hard to search at renewal time`,
+      ],
+      gain: [
+        `Inquiries and tenant questions answered instantly, around the clock`,
+        `Maintenance requests triaged, routed, and tracked automatically`,
+        `Owner reports generated on demand from live data`,
+        `Every lease, clause, and document searchable in seconds`,
+      ],
+    },
+  ];
+
+  // ---- industry explorer (topic accordion + media) ----
+  // [title, object] per topic, index-matched to each industry's pain/gain arrays
+  const TOPIC_META = [
+    [ // Manufacturing
+      ['Tribal knowledge','🧠',`The difference between a line that runs and one that stalls often comes down to a few people who simply know how the machines behave. When they retire, that intuition walks out the door — and training the next person takes years you don't have.`],
+      ['Quoting','📐',`Every custom or low-volume job is a fresh estimate, pulled together by hand from routings, material costs, and memories of similar work. Quote too high and you lose the job; too low and you lose the margin.`],
+      ['Scheduling','📅',`One late delivery or machine breakdown can unravel a week of planning, and rebuilding the schedule by hand means hours in spreadsheets while the floor waits. The plan is stale almost as soon as it's printed.`],
+      ['Quality','🔍',`Catching a defect at final inspection means the material, machine time, and labor are already spent — and sometimes the customer finds it first. The earlier a problem surfaces, the cheaper it is to fix.`],
+    ],
+    [ // Logistics & transport
+      ['Dispatch','🚚',`Your most experienced dispatchers hold the whole network in their heads — which driver to call, which lane runs hot, how to recover when a load falls through. It's invaluable, and almost impossible to scale or replace.`],
+      ['Paperwork','📄',`Every load drags a trail of documents — rate cons, BOLs, customs forms, proofs of delivery — and each gets read and re-typed into another system by hand. It's slow, error-prone, and a full-time job for several people.`],
+      ['Margin','📉',`Detention, deadhead miles, and accessorial charges quietly erode profit on loads that look fine on the surface. Without a clear view across every lane and customer, you can't tell which business actually makes money.`],
+      ['Tracking','📍',`Customers and brokers constantly want to know where their freight is, and answering them pulls staff off the work that actually moves loads. Multiply that across hundreds of shipments and it's a constant drain.`],
+    ],
+    [ // Distribution & wholesale
+      ['Quotes & approvals','✅',`Custom pricing and credit decisions usually funnel through one or two senior people, so when they're busy quotes sit and customers wait. Speed often wins the order, and the bottleneck costs you deals.`],
+      ['Product answers','💬',`Inside sales spend much of the day answering the same questions about stock, lead times, specs, and substitutions. It's necessary, but it keeps your people from actually selling.`],
+      ['Forecasting','📊',`Ordering decisions get made on gut feel and last year's numbers, leaving cash tied up in dead stock or sales lost to empty shelves. Small errors compound into real money across thousands of SKUs.`],
+      ['Order entry','📥',`Orders still arrive as emailed PDFs and faxes that someone reads and re-keys into the ERP. Every manual entry is a chance for a wrong quantity, part number, or ship date.`],
+    ],
+    [ // Construction
+      ['Estimating','📐',`Bidding a job means digesting hundreds of pages of plans and specs, and the estimator's time caps how many bids you can chase. Miss a detail and you eat the cost; pad too much and you lose the bid.`],
+      ['RFIs & changes','📋',`RFIs, submittals, and change orders move across email, spreadsheets, and memory, and anything that slips becomes a dispute or an unpaid extra later. The admin burden grows with every job.`],
+      ['Job knowledge','🏗️',`How a job was actually built — the substitutions, the workarounds, the lessons learned — lives in the heads of the foremen who ran it. When they move on, the next crew relearns the same mistakes.`],
+      ['Field reports','📲',`Daily reports, photos, and issues from the field reach the office days late, so problems are found long after they could have been fixed cheaply. The gap between site and office costs time and money.`],
+    ],
+    [ // Field services
+      ['Scheduling','🗓️',`Dispatchers juggle which tech has the right skills, whether the parts are on the truck, and how to route around traffic — all in real time as jobs change. A bad schedule means windshield time, missed windows, and unhappy customers.`],
+      ['Quotes & invoicing','🧾',`Techs finish the work but the quote or invoice gets written up after hours, so billing lags and cash comes in slowly. Every day of delay is money sitting on the truck instead of the bank.`],
+      ['Tech know-how','🛠️',`Your best techs can diagnose anything; your newest can't yet, and the gap shows up in callbacks and longer jobs. That expertise is hard to clone and slow to teach.`],
+      ['Follow-up','🔔',`Maintenance agreements, recommended repairs, and follow-up visits slip through the cracks because nobody has time to chase them. That's recurring revenue quietly walking away.`],
+    ],
+    [ // Professional services
+      ['Drafting & review','✍️',`Your senior people — the expensive ones — spend hours producing first drafts, doing research, and reviewing routine documents. It has to happen, but it's far below what they're worth.`],
+      ['Knowledge search','🔎',`Decades of expertise sit buried in old matters, files, and inboxes, and finding the right precedent means digging or simply redoing the work. The firm's best asset is its history, and it's barely searchable.`],
+      ['Admin','⏱️',`Timekeeping, scheduling, status updates, and internal notes eat into billable time and rarely get done well. It's the tax every client engagement quietly pays.`],
+      ['Onboarding','🎓',`Getting a new hire up to speed on how the firm actually works takes months of shadowing and correction. Until then, they're a cost rather than a contributor.`],
+    ],
+    [ // Healthcare practices
+      ['Documentation','📝',`Clinicians spend hours after each session on notes, charting, and coding instead of with patients or at home. Documentation burden is one of the biggest drivers of burnout in medicine.`],
+      ['Front desk','☎️',`The front desk is overwhelmed with scheduling, reminders, intake, and insurance questions, and every dropped call or long hold is a frustrated patient. It's the first impression of your practice.`],
+      ['Auth & claims','🏥',`Prior authorizations and denied claims tie up staff for hours and delay both care and payment. The back-and-forth with payers is a constant drag on cash flow.`],
+      ['Patient follow-up','💊',`Messages, results, and follow-up tasks pile up faster than staff can work through them, and the important ones risk getting lost in the volume. Patients notice when they fall through.`],
+    ],
+    [ // Insurance & brokerage
+      ['Submissions','📄',`New business means re-keying the same client data from PDFs, emails, and ACORD forms into multiple systems. It's slow, repetitive, and every keystroke is an error waiting to surface at claim time.`],
+      ['Renewals','🔄',`Renewals often get handled reactively, right before they're due, so accounts get under-served and some quietly leave for a more attentive broker. Proactive prep is where retention is won or lost.`],
+      ['Quoting','📑',`Quoting a risk across multiple carriers means manually entering details and comparing results line by line. The hours it takes slow the client down and limit how many quotes you can run.`],
+      ['Service requests','📬',`Certificates, policy changes, and routine questions get handled one email at a time, and clients judge you on how fast you respond. Service is the product, and it's labor-intensive.`],
+    ],
+    [ // Real estate & property
+      ['Leasing','🏠',`Prospect inquiries and tenant questions arrive at all hours, and slow responses mean lost leases and vacancies that cost money every day. Speed and availability drive occupancy.`],
+      ['Maintenance','🔧',`Maintenance requests come in by phone, email, and text, and someone has to triage, dispatch, and track each one to completion. Things slip, tenants get frustrated, and small issues become expensive ones.`],
+      ['Owner reporting','📈',`Owner and investor reports get rebuilt by hand every month from data scattered across systems. It's tedious work that adds no value but can't be skipped.`],
+      ['Document search','🗂️',`Lease terms, clauses, and key dates are buried in documents nobody can quickly search, so renewals and disputes mean hunting through files. The answer exists — it's just hard to find.`],
+    ],
+  ];
+
+  const expTabs2 = document.getElementById('expTabs2');
+  const expTopics2 = document.getElementById('expTopics2');
+  const expMedia2 = document.getElementById('expMedia2');
+  if (expTabs2 && expTopics2 && expMedia2) {
+    const topicsFor = (i) => INDUSTRIES[i].pain.map((p, j) => ({
+      title: (TOPIC_META[i] && TOPIC_META[i][j]) ? TOPIC_META[i][j][0] : `Topic ${j + 1}`,
+      obj: (TOPIC_META[i] && TOPIC_META[i][j]) ? TOPIC_META[i][j][1] : '🖼️',
+      desc: (TOPIC_META[i] && TOPIC_META[i][j]) ? TOPIC_META[i][j][2] : '',
+      pain: p, gain: INDUSTRIES[i].gain[j],
+    }));
+    function renderMedia(t) {
+      expMedia2.innerHTML = `<div class="exp2-fig"><div class="obj">${t.obj}</div><div class="cap">${t.title} — image placeholder</div></div>`;
+    }
+    function openTopic(i, j) {
+      [...expTopics2.children].forEach((el, n) => el.classList.toggle('open', n === j));
+      renderMedia(topicsFor(i)[j]);
+    }
+    function renderTopics(i) {
+      const topics = topicsFor(i);
+      expTopics2.innerHTML = topics.map((t, j) => `
+        <div class="exp2-topic${j === 0 ? ' open' : ''}">
+          <button class="exp2-th"><span><span class="tnum">0${j + 1}</span>${t.title}</span><span class="chev">›</span></button>
+          <div class="exp2-tbody"><div class="exp2-tbody-inner">
+            <p class="t-desc">${t.desc}</p>
+            <p class="t-pain"><span class="pain-lab">Today</span>${t.pain}</p>
+            <p class="t-gain"><span class="gain-lab">With AI</span>${t.gain}</p>
+          </div></div>
+        </div>`).join('');
+      [...expTopics2.children].forEach((el, j) => {
+        el.querySelector('.exp2-th').addEventListener('click', () => openTopic(i, j));
+      });
+      renderMedia(topics[0]);
+    }
+    function selectInd2(i) {
+      [...expTabs2.children].forEach((b, n) => b.classList.toggle('on', n === i));
+      renderTopics(i);
+    }
+    INDUSTRIES.forEach((d, i) => {
+      const b = document.createElement('button');
+      b.className = 'exp-tab';
+      b.textContent = d.label;
+      b.addEventListener('click', () => selectInd2(i));
+      expTabs2.appendChild(b);
+    });
+    expTabs2.children[0].classList.add('on');
+    renderTopics(0);
+  }
 
   // ---- tweaks ----
   const HEADLINES = {
