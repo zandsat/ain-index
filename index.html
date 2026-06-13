@@ -127,10 +127,6 @@
   body.js .princ.in .pr:nth-child(3)  { transition-delay: .26s; }
   @media (prefers-reduced-motion: reduce) { body.js .princ .pr { opacity: 1 !important; transform: none !important; transition: none !important; } }
 
-  /* ---------------- WORK-IN-PROGRESS WATERMARK ---------------- */
-  .wip { position: relative; }
-  .wip::before { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 4; background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='330'%20height='200'%3E%3Ctext%20x='8'%20y='112'%20font-family='monospace'%20font-size='18'%20letter-spacing='3'%20fill='%23d99a2b'%20fill-opacity='0.13'%20transform='rotate(-22%20160%20100)'%3EWORK%20IN%20PROGRESS%3C/text%3E%3C/svg%3E"); background-repeat: repeat; }
-  .wip::after { content: "Work in progress · refining next"; position: absolute; top: 16px; right: 16px; z-index: 6; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; background: oklch(0.82 0.13 78); color: oklch(0.28 0.06 60); padding: 6px 12px; border-radius: 999px; pointer-events: none; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
 
   /* ---------------- WORK ---------------- */
   .work { background: var(--paper); color: var(--ink); }
@@ -219,8 +215,8 @@
   .marquee { position: relative; margin: 30px 0; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
   .mq-track { display: flex; gap: 0; width: max-content; animation: scrollx 52s linear infinite; }
   .mq-track.rev { animation-direction: reverse; animation-duration: 64s; }
-  .news:hover .mq-track { animation-play-state: paused; }
-  .headline { font-family: var(--serif); font-weight: 300; font-size: clamp(26px, 3vw, 40px); letter-spacing: -0.015em; color: var(--on-dark); white-space: nowrap; padding: 0 38px; display: inline-flex; align-items: center; gap: 38px; opacity: 0.82; }
+  .headline { font-family: var(--serif); font-weight: 300; font-size: clamp(26px, 3vw, 40px); letter-spacing: -0.015em; color: var(--on-dark); white-space: nowrap; padding: 0 38px; display: inline-flex; align-items: center; gap: 38px; opacity: 0.82; text-decoration: none; transition: opacity .2s; }
+  .headline:hover { opacity: 1; }
   .headline::after { content: "›"; color: var(--cobalt-bright); font-size: 0.7em; }
   .headline .src { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--on-dark-soft); opacity: 0.7; }
   @keyframes scrollx { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -399,7 +395,7 @@
   </section>
 
   <!-- NEWS -->
-  <section class="news wip">
+  <section class="news">
     <div class="wrap reveal">
       <span class="eyebrow">Already underway</span>
       <p class="kicker">The companies in these stories started somewhere, too.</p>
@@ -561,25 +557,42 @@
 
   // ---- news ----
   const ROW1 = [
-    ['Manufacturers cut weeks off production planning', 'Industry Wire'],
-    ['The back office is quietly disappearing into software', 'Mid-Market Report'],
-    ['Family-run firms become industry leaders again', 'Business Daily'],
-    ['Logistics teams automate the paperwork that took days', 'Trade Journal'],
-    ['AI moves from pilot to core operations', 'Sector Review'],
+    ['Manufacturers cut weeks off production planning', 'Rockwell Automation', 'https://www.rockwellautomation.com/en-us/company/news/press-releases/Ninety-Five-Percent-of-Manufacturers-Are-Investing-in-AI-to-Navigate-Uncertainty-and-Accelerate-Smart-Manufacturing.html'],
+    ['The back office is quietly disappearing into software', 'Recruiter.com', 'https://www.recruiter.com/recruiting/back-office-jobs-are-disappearing-fast-but-what-will-replace-them/'],
+    ['Family-run firms become industry leaders again', 'PwC', 'https://www.pwc.com/gx/en/news-room/press-releases/2025/pwc-global-family-business-survey.html'],
+    ['Logistics teams automate the paperwork that took days', 'Flexport', 'https://www.flexport.com/blog/generative-ai-in-logistics-use-cases-data-strategies-and-the-future-of/'],
+    ['AI moves from pilot to core operations', 'PYMNTS', 'https://www.pymnts.com/artificial-intelligence-2/2025/enterprise-ai-matures-as-companies-move-pilots-to-unified-platforms'],
   ];
   const ROW2 = [
-    ['Distribution margins climb as approvals go automatic', 'Commerce Weekly'],
-    ['Decades of documents, finally searchable in seconds', 'Ops Monthly'],
-    ['The new advantage isn\'t size — it\'s speed', 'Strategy Brief'],
-    ['Established companies are reinventing how they run', 'Enterprise Times'],
-    ['Quietly, the mid-market is modernizing', 'Market Signal'],
+    ['Distribution margins climb as approvals go automatic', 'Distribution Strategy', 'https://distributionstrategy.com/2025/07/the-new-rules-of-profitability-in-wholesale-distribution/'],
+    ['Decades of documents, finally searchable in seconds', 'Glean', 'https://www.glean.com/blog/the-definitive-guide-to-ai-based-enterprise-search-for-2025'],
+    ['The new advantage isn\'t size — it\'s speed', 'Business Money', 'https://www.business-money.com/announcements/how-adaptability-is-outperforming-size-in-2025s-competitive-markets/'],
+    ['Established companies are reinventing how they run', 'PwC', 'https://www.pwc.com/us/en/services/consulting/supply-chain-operations/library/digital-trends-operations-survey.html'],
+    ['Quietly, the mid-market is modernizing', 'People Managing People', 'https://peoplemanagingpeople.com/hr-operations/ai-transformation-for-mid-market-companies/'],
   ];
   function fill(el, rows) {
-    const item = ([t, s]) => `<span class="headline">${t}<span class="src">${s}</span></span>`;
+    const item = ([t, s, u]) => `<a class="headline" href="${u}" target="_blank" rel="noopener noreferrer">${t}<span class="src">${s}</span></a>`;
     el.innerHTML = rows.map(item).join('').repeat(2);
   }
   fill(document.getElementById('mq1'), ROW1);
   fill(document.getElementById('mq2'), ROW2);
+
+  // Slow marquee on hover over the track strips only (not the whole section)
+  document.querySelectorAll('.marquee').forEach(function(marquee) {
+    var tracks = marquee.querySelectorAll('.mq-track');
+    marquee.addEventListener('mouseenter', function() {
+      tracks.forEach(function(t) {
+        var dur = parseFloat(getComputedStyle(t).animationDuration);
+        t.dataset.baseDur = dur;
+        t.style.animationDuration = (dur * 4) + 's';
+      });
+    });
+    marquee.addEventListener('mouseleave', function() {
+      tracks.forEach(function(t) {
+        t.style.animationDuration = t.dataset.baseDur ? t.dataset.baseDur + 's' : '';
+      });
+    });
+  });
 
   // ---- reveal ----
   const io = new IntersectionObserver((entries) => {
