@@ -839,8 +839,9 @@
       expMedia2.innerHTML = `<div class="exp2-fig"><div class="obj">${t.obj}</div><div class="cap">${t.title} — image placeholder</div></div>`;
     }
     function openTopic(i, j) {
-      [...expTopics2.children].forEach((el, n) => el.classList.toggle('open', n === j));
-      renderMedia(topicsFor(i)[j]);
+      const isOpen = [...expTopics2.children][j].classList.contains('open');
+      [...expTopics2.children].forEach((el, n) => el.classList.toggle('open', !isOpen && n === j));
+      if (!isOpen) renderMedia(topicsFor(i)[j]);
     }
     function renderTopics(i) {
       const topics = topicsFor(i);
