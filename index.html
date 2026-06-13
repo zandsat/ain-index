@@ -137,14 +137,17 @@
   .work .h2 { color: var(--on-dark); max-width: 14ch; }
   .work .lead { color: var(--on-dark-soft); max-width: 46ch; margin-top: 22px; }
   .work .lead strong { color: var(--on-dark); font-weight: 400; }
-  .steps { margin-top: 64px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid oklch(0.95 0.012 265 / 0.16); }
-  .step { padding: 38px 34px 8px 34px; border-right: 1px solid oklch(0.95 0.012 265 / 0.12); }
-  .step:first-child { padding-left: 0; }
-  .step:last-child { border-right: none; padding-right: 0; }
-  .step .num { font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em; color: var(--cobalt-bright); }
-  .step h3 { font-family: var(--serif); font-weight: 400; font-size: 27px; line-height: 1.1; margin: 18px 0 16px; color: var(--on-dark); }
-  .step p { font-size: 16px; line-height: 1.6; color: var(--on-dark-soft); }
-  @media (max-width: 860px) { .steps { grid-template-columns: 1fr; } .step { border-right: none; border-bottom: 1px solid oklch(0.95 0.012 265 / 0.12); padding: 32px 0 28px; } }
+  .f-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-bottom: 50px; }
+  .f-hdr { font-family: var(--serif); font-weight: 300; font-size: clamp(34px, 4.2vw, 54px); color: var(--on-dark); letter-spacing: -0.02em; white-space: nowrap; }
+  .f-hdr b { font-style: italic; font-weight: 400; color: var(--cobalt-bright); }
+  .f-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; }
+  .f-col { position: relative; }
+  .f-bn { font-family: var(--serif); font-weight: 300; font-size: clamp(72px, 7vw, 100px); line-height: 0.8; color: var(--cobalt-bright); letter-spacing: -0.03em; }
+  .f-rule { height: 1px; background: oklch(0.95 0.012 265 / 0.14); margin: 28px 0; position: relative; }
+  .f-rule::before { content: ""; position: absolute; left: 0; top: -2.5px; width: 6px; height: 6px; border-radius: 50%; background: var(--cobalt-bright); }
+  .f-col h3 { font-family: var(--serif); font-weight: 400; font-size: 32px; margin: 0 0 16px; color: var(--on-dark); }
+  .f-col p { font-size: 17.5px; line-height: 1.6; color: var(--on-dark-soft); margin: 0; }
+  @media (max-width: 900px) { .f-grid { grid-template-columns: 1fr; gap: 36px; } .f-hdr { white-space: normal; } }
 
   /* ---------------- WHY ---------------- */
   .why { background: var(--paper); }
@@ -259,42 +262,29 @@
       </div>
       <div class="belief-body">
         <div class="prose reveal">
-          <p>Not a single tool. Not a one-off project that ends when we leave. We help your whole organization modernize and build the muscle to <strong>keep modernizing long after we're gone.</strong></p>
-          <p>We work beside your leadership to find where AI creates real, <strong>measurable</strong> leverage, prove what's actually worth doing, and turn it into how the company runs.</p>
+          <p>Not just another piece of software. Not a one-off project that ends when we leave. We help your whole company modernize and build the muscle to <strong>keep modernizing long after we're gone.</strong></p>
+          <p>We work beside you and your team to find where AI creates real, <strong>measurable</strong> impact, prove what's actually worth doing, and turn it into how the company runs.</p>
         </div>
         <div class="princ" id="princSection">
-          <div class="pr"><div class="prl">Adaptive</div><p><span class="negin">Not a product to install</span> — a company that keeps improving how it works.</p></div>
-          <div class="pr"><div class="prl">Lasting</div><p><span class="negin">Not a pilot that fizzles</span> — a partnership that stays through execution.</p></div>
-          <div class="pr"><div class="prl">Yours</div><p><span class="negin">Not advice in a deck</span> — a capability that lives with your team.</p></div>
+          <div class="pr"><div class="prl">Real</div><p><span class="negin">Not AI for its own sake.</span> Work you can measure in time and money.</p></div>
+          <div class="pr"><div class="prl">Yours</div><p><span class="negin">Not one-size-fits-all.</span> Built around your company and your people.</p></div>
+          <div class="pr"><div class="prl">Lasting</div><p><span class="negin">Not a quick win that fades.</span> A change that holds for years.</p></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- WORK -->
-  <section class="work dark wip" id="work">
+  <section class="work dark" id="work">
     <div class="wrap">
-      <div class="col reveal">
+      <div class="f-head reveal">
         <span class="eyebrow">How we work</span>
-        <h2 class="h2">A partnership, not a project.</h2>
-        <p class="lead">We don't sell you a system and leave. <strong>We help your organization become one that can keep building.</strong></p>
+        <span class="f-hdr">Three <b>simple</b> steps.</span>
       </div>
-      <div class="steps">
-        <div class="step reveal">
-          <div class="num">01</div>
-          <h3>Assess</h3>
-          <p>We map how your company actually operates, where time, money, and momentum are lost, and identify the highest-leverage opportunities for AI to make a difference.</p>
-        </div>
-        <div class="step reveal">
-          <div class="num">02</div>
-          <h3>Design the roadmap</h3>
-          <p>We build a transformation plan specific to your company, your team, and your capacity for change. No generic frameworks. No unnecessary complexity.</p>
-        </div>
-        <div class="step reveal">
-          <div class="num">03</div>
-          <h3>Stay through execution</h3>
-          <p>We work alongside you through implementation, validating what's working, fixing what isn't, and building the internal capability to sustain it long after we're done.</p>
-        </div>
+      <div class="f-grid">
+        <div class="f-col reveal"><div class="f-bn">01</div><div class="f-rule"></div><h3>Learn the business</h3><p>We sit with your team and look at how the work really flows — finding where time and money slip away, and the clearest places AI can win back the most.</p></div>
+        <div class="f-col reveal"><div class="f-bn">02</div><div class="f-rule"></div><h3>Prove a better way</h3><p>In a hands-on workshop, we take one real piece of your work and reshape how it gets done — so you feel the new way for yourself, not just watch a demo.</p></div>
+        <div class="f-col reveal"><div class="f-bn">03</div><div class="f-rule"></div><h3>Put it to work</h3><p>We don't stop at the proof. We work beside you to bring that same shift to the rest of the business — process by process — and build your team's ability to keep going without us.</p></div>
       </div>
     </div>
   </section>
@@ -337,7 +327,7 @@
     <div class="wrap reveal">
       <span class="eyebrow">Start the conversation</span>
       <h2>Let's begin.</h2>
-      <p class="sub">A conversation to find your new how. No pitch, no obligation — just a clear look at what's possible for your company.</p>
+      <p class="sub">No pitch, no obligation — just a clear look at what's actually possible for your company.</p>
       <a href="mailto:hello@startwithimago.com?subject=Starting%20a%20conversation%20with%20Imago&body=Hi%20Imago%20team%2C%0A%0AA%20bit%20about%20us%3A%0A%0ACompany%3A%20%0AIndustry%3A%20%0AWhat%20we%27re%20looking%20to%20change%3A%20%0A%0ALooking%20forward%20to%20connecting." class="btn">Send us an email <span class="btn-arrow">→</span></a>
       <div class="micro">hello@startwithimago.com</div>
     </div>
@@ -354,7 +344,7 @@
     <div class="wrap reveal">
       <div class="news-foot">
         <a href="mailto:hello@startwithimago.com?subject=Starting%20a%20conversation%20with%20Imago&body=Hi%20Imago%20team%2C%0A%0AA%20bit%20about%20us%3A%0A%0ACompany%3A%20%0AIndustry%3A%20%0AWhat%20we%27re%20looking%20to%20change%3A%20%0A%0ALooking%20forward%20to%20connecting." class="btn">Get in touch <span class="btn-arrow">→</span></a>
-        <span>Find where your company starts.</span>
+        <span>See where your company could go.</span>
       </div>
     </div>
   </section>
@@ -363,7 +353,7 @@
   <footer>
     <div class="wrap foot-inner">
       <div class="wordmark">Imago<b>.</b></div>
-      <div class="foot-meta">Evolving established companies into their AI-native form · © 2026</div>
+      <div class="foot-meta">Evolving established companies into the AI-native era · © 2026</div>
     </div>
   </footer>
 
