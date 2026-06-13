@@ -981,6 +981,9 @@
     el.addEventListener('click', closeIntake);
   });
   document.getElementById('intakeBackdrop').addEventListener('click', closeIntake);
+  document.getElementById('intakeModal').addEventListener('click', function(e) {
+    if (e.target === this) closeIntake();
+  });
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape' && !document.getElementById('intakeModal').hidden) closeIntake();
   });
