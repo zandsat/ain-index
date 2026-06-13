@@ -970,7 +970,9 @@
     document.body.style.position = '';
     document.body.style.top = '';
     document.body.style.width = '';
+    document.documentElement.style.scrollBehavior = 'auto';
     window.scrollTo(0, scrollY);
+    document.documentElement.style.scrollBehavior = '';
   }
 
   document.querySelectorAll('.intake-trigger').forEach(function(el) {
