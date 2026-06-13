@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blog — Imago</title>
+<meta name="description" content="Perspectives on AI and the modern company — from the team at Imago." />
+<link rel="canonical" href="https://startwithimago.com/blog/" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400;1,6..72,500&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: oklch(0.972 0.006 90);
+    --paper-2: oklch(0.948 0.009 90);
+    --ink: oklch(0.235 0.018 265);
+    --ink-soft: oklch(0.46 0.02 265);
+    --ink-faint: oklch(0.6 0.018 265);
+    --line: oklch(0.235 0.018 265 / 0.13);
+    --line-soft: oklch(0.235 0.018 265 / 0.07);
+    --cobalt: oklch(0.52 0.17 262);
+    --cobalt-deep: oklch(0.43 0.15 262);
+    --navy: oklch(0.205 0.045 264);
+    --on-dark: oklch(0.95 0.012 265);
+    --on-dark-soft: oklch(0.76 0.025 265);
+    --cobalt-bright: oklch(0.72 0.15 260);
+    --serif: "Newsreader", Georgia, serif;
+    --sans: "Public Sans", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body { margin: 0; overflow-x: hidden; background: var(--paper); color: var(--ink); font-family: var(--sans); line-height: 1.6; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 56px; }
+  p { margin: 0 0 1.2em; } p:last-child { margin-bottom: 0; }
+
+  .btn { font-family: var(--sans); font-size: 16px; font-weight: 500; padding: 15px 30px; background: var(--cobalt); color: #fff; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: background .2s, transform .2s; white-space: nowrap; }
+  .btn:hover { background: var(--cobalt-deep); transform: translateY(-1px); }
+
+  /* ---------------- NAV ---------------- */
+  .nav { position: sticky; top: 0; left: 0; right: 0; z-index: 50; background: oklch(0.205 0.045 264 / 0.92); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom: 1px solid oklch(0.95 0.012 265 / 0.08); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 56px; max-width: 1180px; margin: 0 auto; }
+  .wordmark { font-family: var(--serif); font-size: 25px; color: var(--on-dark); letter-spacing: 0.01em; text-decoration: none; }
+  .wordmark b { color: var(--cobalt-bright); font-weight: 400; }
+  .nav-links { display: flex; gap: 34px; align-items: center; }
+  .nav-links a { color: var(--on-dark-soft); text-decoration: none; font-size: 15px; transition: color .2s; }
+  .nav-links a:hover { color: var(--on-dark); }
+  .nav-links a.active { color: var(--on-dark); }
+  .nav-cta { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-dark); border: 1px solid oklch(0.95 0.012 265 / 0.3); padding: 9px 16px; border-radius: 4px; white-space: nowrap; }
+  .nav-cta:hover { border-color: var(--cobalt-bright); color: var(--cobalt-bright); }
+
+  /* ---------------- BLOG HEADER ---------------- */
+  .blog-header { padding: clamp(64px, 9vw, 104px) 0 clamp(48px, 6vw, 72px); }
+  .blog-hero-title { font-family: var(--serif); font-weight: 300; font-size: clamp(44px, 6.5vw, 86px); line-height: 1.0; letter-spacing: -0.03em; margin: 0; }
+  .blog-hero-title .dot { color: var(--cobalt); }
+  .blog-hero-sub { display: block; color: var(--ink-soft); }
+
+  /* ---------------- BLOG LAYOUT ---------------- */
+  .blog-layout { display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; padding-bottom: clamp(72px, 9vw, 120px); align-items: start; }
+
+  /* Featured card */
+  .featured-card { background: var(--navy); border-radius: 10px; padding: 44px 44px 44px; display: flex; flex-direction: column; justify-content: flex-end; min-height: 500px; position: relative; overflow: hidden; color: var(--on-dark); text-decoration: none; cursor: pointer; transition: transform .25s cubic-bezier(.16,1,.3,1); }
+  .featured-card:hover { transform: translateY(-3px); }
+  .featured-card::before { content: ""; position: absolute; inset: 0; background: radial-gradient(130% 80% at 105% -5%, oklch(0.52 0.17 262 / 0.55), transparent 55%); pointer-events: none; }
+  .featured-card::after { content: ""; position: absolute; bottom: -60px; right: -60px; width: 280px; height: 280px; border-radius: 50%; border: 1px solid oklch(0.95 0.012 265 / 0.08); pointer-events: none; }
+  .featured-inner { position: relative; }
+  .featured-meta { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--on-dark-soft); margin-bottom: 20px; }
+  .featured-meta .sep { margin: 0 6px; opacity: 0.5; }
+  .featured-title { font-family: var(--serif); font-weight: 400; font-size: clamp(24px, 2.6vw, 36px); line-height: 1.1; letter-spacing: -0.02em; color: var(--on-dark); margin: 0 0 18px; }
+  .featured-excerpt { font-size: 15.5px; line-height: 1.6; color: var(--on-dark-soft); font-weight: 300; margin: 0; }
+
+  /* Article list */
+  .blog-list { display: flex; flex-direction: column; }
+  .blog-item { padding: 30px 0; border-bottom: 1px solid var(--line-soft); text-decoration: none; color: inherit; display: block; transition: opacity .2s; }
+  .blog-item:first-child { padding-top: 4px; }
+  .blog-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .blog-item:hover .post-title { color: var(--cobalt); }
+  .post-meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 10px; }
+  .post-meta .sep { margin: 0 5px; }
+  .post-title { font-family: var(--serif); font-weight: 400; font-size: clamp(17px, 1.5vw, 21px); line-height: 1.2; letter-spacing: -0.01em; color: var(--ink); margin: 0 0 10px; transition: color .2s; }
+  .post-excerpt { font-size: 15px; color: var(--ink-soft); font-weight: 300; line-height: 1.62; margin: 0; }
+
+  /* ---------------- FOOTER ---------------- */
+  footer { background: oklch(0.17 0.04 264); color: var(--on-dark-soft); padding: 52px 0; }
+  .foot-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+  .foot-meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  @media (max-width: 860px) {
+    .wrap { padding: 0 24px; }
+    .nav-inner { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .blog-layout { grid-template-columns: 1fr; gap: 0; }
+    .featured-card { min-height: 380px; margin-bottom: 8px; }
+    .blog-item:first-child { padding-top: 30px; border-top: 1px solid var(--line-soft); }
+  }
+
+  /* ---------------- INTAKE MODAL ---------------- */
+  .modal-backdrop { position: fixed; inset: 0; z-index: 100; background: oklch(0.205 0.045 264 / 0.65); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); opacity: 0; transition: opacity .3s; pointer-events: none; }
+  .modal-backdrop.open { opacity: 1; pointer-events: auto; }
+  .modal-wrap { position: fixed; inset: 0; z-index: 101; display: flex; align-items: flex-start; justify-content: center; padding: 20px; pointer-events: none; overflow-y: auto; overscroll-behavior: contain; }
+  .modal-wrap[hidden] { display: none !important; }
+  .modal-wrap.open { pointer-events: auto; }
+  .modal-card { background: var(--paper); border-radius: 14px; box-shadow: 0 28px 72px oklch(0.17 0.04 264 / 0.36), 0 6px 20px oklch(0 0 0 / 0.08); width: 100%; max-width: 548px; margin: auto; padding: 38px 44px; transform: translateY(22px) scale(0.97); transition: transform .38s cubic-bezier(.16,1,.3,1), opacity .3s; opacity: 0; pointer-events: auto; }
+  .modal-wrap.open .modal-card { transform: none; opacity: 1; }
+  .modal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 26px; }
+  .eyebrow { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--cobalt); display: inline-flex; align-items: center; gap: 12px; }
+  .eyebrow::before { content: ""; width: 22px; height: 1.5px; background: var(--cobalt); display: inline-block; }
+  .modal-close { border: 0; background: none; color: var(--ink-faint); font-size: 22px; cursor: pointer; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 7px; transition: color .15s, background .15s; line-height: 1; padding: 0; }
+  .modal-close:hover { color: var(--ink); background: oklch(0.235 0.018 265 / 0.07); }
+  .modal-progress { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; }
+  .mp-track { display: flex; align-items: center; }
+  .mp-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); transition: background .3s; display: inline-block; }
+  .mp-dot.active { background: var(--cobalt); }
+  .mp-line { width: 28px; height: 1.5px; background: var(--line); display: inline-block; margin: 0 6px; }
+  .mp-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
+  .modal-title { font-family: var(--serif); font-weight: 300; font-size: clamp(26px, 3.5vw, 36px); letter-spacing: -0.022em; margin: 0 0 8px; color: var(--ink); line-height: 1.1; }
+  .modal-sub { font-size: 16px; color: var(--ink-soft); font-weight: 300; margin: 0 0 28px; }
+  .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .fld { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+  .fld-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); }
+  .fld-label .req { color: var(--cobalt); font-style: normal; }
+  .fld-opt { text-transform: none; letter-spacing: 0; font-family: var(--sans); font-size: 10.5px; color: var(--ink-faint); }
+  .fld input, .fld select, .fld textarea { font-family: var(--sans); font-size: 15px; padding: 11px 14px; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); color: var(--ink); width: 100%; transition: border-color .2s, box-shadow .2s; -webkit-appearance: none; appearance: none; }
+  .fld select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888da8' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px; cursor: pointer; }
+  .fld textarea { resize: vertical; min-height: 82px; line-height: 1.55; }
+  .fld input:focus, .fld select:focus, .fld textarea:focus { outline: none; border-color: var(--cobalt); box-shadow: 0 0 0 3px oklch(0.52 0.17 262 / 0.13); }
+  .fld.err input, .fld.err select { border-color: oklch(0.55 0.18 25); }
+  .fld-err { font-family: var(--mono); font-size: 10px; color: oklch(0.55 0.18 25); letter-spacing: 0.04em; display: none; margin-top: 1px; }
+  .fld.err .fld-err { display: block; }
+  .modal-foot { display: flex; justify-content: flex-end; margin-top: 10px; }
+  .modal-foot-2col { justify-content: space-between; align-items: center; }
+  .modal-foot button.btn-ghost { background: none; border: none; border-bottom: 1.5px solid var(--line); cursor: pointer; color: var(--ink-soft); font-size: 15px; padding: 0 0 2px; font-family: var(--sans); font-weight: 500; display: inline-flex; align-items: center; gap: 9px; }
+  .modal-foot button.btn-ghost:hover { color: var(--ink); border-bottom-color: currentColor; }
+  .modal-success { text-align: center; padding: 16px 0 8px; }
+  .modal-check { width: 58px; height: 58px; border-radius: 50%; background: oklch(0.52 0.17 262 / 0.1); color: var(--cobalt); font-size: 26px; display: flex; align-items: center; justify-content: center; margin: 0 auto 22px; }
+  @media (max-width: 600px) { .modal-card { padding: 28px 22px; } .f-row { grid-template-columns: 1fr; gap: 0; } }
+</style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="wordmark">Imago<b>.</b></a>
+      <div class="nav-links">
+        <a href="/#what">What we do</a>
+        <a href="/#work">How we work</a>
+        <a href="/#why">Why Imago</a>
+        <a href="/blog/" class="active">Blog</a>
+        <a href="#" class="nav-cta intake-trigger">Get in touch</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="blog-header">
+    <div class="wrap">
+      <h1 class="blog-hero-title">Imago Blog<span class="dot">.</span><br><span class="blog-hero-sub">Perspectives on AI and the modern company.</span></h1>
+    </div>
+  </div>
+
+  <!-- BLOG LAYOUT -->
+  <div class="wrap">
+    <div class="blog-layout">
+
+      <!-- Featured post -->
+      <a class="featured-card" href="#">
+        <div class="featured-inner">
+          <div class="featured-meta">
+            Operations<span class="sep">—</span>6 min read<span class="sep">—</span>10 Jun 2026
+          </div>
+          <h2 class="featured-title">Why AI Is No Longer a Pilot Program — It's Now Core to How Companies Operate</h2>
+          <p class="featured-excerpt">78% of enterprises now use AI in at least one business function. The question is no longer whether to adopt it — it's how to stop running experiments and start running your business differently.</p>
+        </div>
+      </a>
+
+      <!-- Article list -->
+      <div class="blog-list">
+
+        <a class="blog-item" href="#">
+          <div class="post-meta">Workforce<span class="sep">—</span>4 min read<span class="sep">—</span>03 Jun 2026</div>
+          <h2 class="post-title">The Back Office Is Quietly Disappearing — And That's a Good Thing</h2>
+          <p class="post-excerpt">Data entry, manual approvals, inbox-driven coordination — these tasks defined a generation of back-office work. AI is absorbing them, and the companies moving fastest are using the time to do something more valuable.</p>
+        </a>
+
+        <a class="blog-item" href="#">
+          <div class="post-meta">Strategy<span class="sep">—</span>5 min read<span class="sep">—</span>27 May 2026</div>
+          <h2 class="post-title">Speed Is the New Size: Why Agility Now Beats Scale</h2>
+          <p class="post-excerpt">For decades, bigger meant stronger. More resources, more reach, more resilience. But the companies pulling ahead in 2025 aren't always the largest — they're the ones that can decide and move in hours, not quarters.</p>
+        </a>
+
+        <a class="blog-item" href="#">
+          <div class="post-meta">Operations<span class="sep">—</span>5 min read<span class="sep">—</span>19 May 2026</div>
+          <h2 class="post-title">From Days to Seconds: How Logistics Teams Are Reclaiming Their Time</h2>
+          <p class="post-excerpt">Flexport's customs team is on track to automate 80% of manual tasks. Kuehne+Nagel processes documents 40% faster. What used to take a team of coordinators an entire day now runs while they focus on the work that actually requires them.</p>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap foot-inner">
+      <a href="/" class="wordmark">Imago<b>.</b></a>
+      <div class="foot-meta">Evolving established companies into the AI-native era · © 2026</div>
+    </div>
+  </footer>
+
+  <!-- INTAKE MODAL -->
+  <div class="modal-backdrop" id="intakeBackdrop" aria-hidden="true"></div>
+  <div class="modal-wrap" id="intakeModal" role="dialog" aria-modal="true" aria-labelledby="intakeTitle" hidden>
+    <div class="modal-card" id="intakeCard">
+      <div class="modal-head">
+        <span class="eyebrow">Start the conversation</span>
+        <button class="modal-close" id="intakeClose" aria-label="Close">&times;</button>
+      </div>
+      <div class="modal-progress" aria-hidden="true">
+        <div class="mp-track">
+          <span class="mp-dot active" id="mpDot1"></span>
+          <span class="mp-line"></span>
+          <span class="mp-dot" id="mpDot2"></span>
+        </div>
+        <span class="mp-label" id="mpLabel">Step 1 of 2</span>
+      </div>
+      <form id="intakeForm" novalidate>
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div id="intakeStep1">
+          <h2 class="modal-title" id="intakeTitle">Tell us about yourself.</h2>
+          <p class="modal-sub">A few details so we can come prepared.</p>
+          <div class="f-row">
+            <div class="fld">
+              <label class="fld-label" for="if_fname">First name <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="if_fname" name="first_name" autocomplete="given-name" required placeholder="Jane">
+              <span class="fld-err">Please enter your first name.</span>
+            </div>
+            <div class="fld">
+              <label class="fld-label" for="if_lname">Last name <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="if_lname" name="last_name" autocomplete="family-name" required placeholder="Smith">
+              <span class="fld-err">Please enter your last name.</span>
+            </div>
+          </div>
+          <div class="fld">
+            <label class="fld-label" for="if_email">Work email <span class="req" aria-hidden="true">*</span></label>
+            <input type="email" id="if_email" name="email" autocomplete="email" required placeholder="jane@yourcompany.com">
+            <span class="fld-err">Please enter a valid work email.</span>
+          </div>
+          <div class="fld">
+            <label class="fld-label" for="if_company">Company <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="if_company" name="company" autocomplete="organization" required placeholder="Acme Corp">
+            <span class="fld-err">Please enter your company name.</span>
+          </div>
+          <div class="modal-foot">
+            <button type="button" class="btn" id="toStep2">Next <span>→</span></button>
+          </div>
+        </div>
+        <div id="intakeStep2" hidden>
+          <h2 class="modal-title">About your company.</h2>
+          <p class="modal-sub">Help us understand your world before we meet.</p>
+          <div class="f-row">
+            <div class="fld">
+              <label class="fld-label" for="if_role">Your role / title <span class="req" aria-hidden="true">*</span></label>
+              <input type="text" id="if_role" name="role" autocomplete="organization-title" required placeholder="Operations Manager">
+              <span class="fld-err">Please enter your role.</span>
+            </div>
+            <div class="fld">
+              <label class="fld-label" for="if_size">Company size <span class="req" aria-hidden="true">*</span></label>
+              <select id="if_size" name="company_size" required>
+                <option value="">Select…</option>
+                <option value="Under 50">Under 50 employees</option>
+                <option value="50–200">50–200 employees</option>
+                <option value="200–1,000">200–1,000 employees</option>
+                <option value="1,000+">1,000+ employees</option>
+              </select>
+              <span class="fld-err">Please select a company size.</span>
+            </div>
+          </div>
+          <div class="fld">
+            <label class="fld-label" for="if_industry">Industry <span class="req" aria-hidden="true">*</span></label>
+            <select id="if_industry" name="industry" required>
+              <option value="">Select…</option>
+              <option value="Manufacturing">Manufacturing</option>
+              <option value="Logistics &amp; Distribution">Logistics &amp; Distribution</option>
+              <option value="Professional Services">Professional Services</option>
+              <option value="Construction &amp; Real Estate">Construction &amp; Real Estate</option>
+              <option value="Healthcare">Healthcare</option>
+              <option value="Retail &amp; E-commerce">Retail &amp; E-commerce</option>
+              <option value="Food &amp; Beverage">Food &amp; Beverage</option>
+              <option value="Other">Other</option>
+            </select>
+            <span class="fld-err">Please select an industry.</span>
+          </div>
+          <div class="fld">
+            <label class="fld-label" for="if_challenge">What's your biggest operational challenge? <span class="fld-opt">(optional)</span></label>
+            <textarea id="if_challenge" name="challenge" rows="3" placeholder="e.g. too much manual work, slow approvals, disconnected systems…"></textarea>
+          </div>
+          <div class="fld">
+            <label class="fld-label" for="if_source">How did you hear about Imago? <span class="fld-opt">(optional)</span></label>
+            <select id="if_source" name="source">
+              <option value="">Select…</option>
+              <option value="LinkedIn">LinkedIn</option>
+              <option value="Referral">Referral / word of mouth</option>
+              <option value="Google search">Google search</option>
+              <option value="Event or conference">Event or conference</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="modal-foot modal-foot-2col">
+            <button type="button" class="btn-ghost" id="toStep1">← Back</button>
+            <button type="submit" class="btn" id="intakeSubmit">Get in touch <span>→</span></button>
+          </div>
+        </div>
+        <div id="intakeDone" hidden>
+          <div class="modal-success">
+            <div class="modal-check">✓</div>
+            <h2 class="modal-title" style="margin-bottom:12px;">We'll be in touch.</h2>
+            <p class="modal-sub" style="margin-bottom:0;">Thanks for reaching out. We'll review your message and come back to you within one business day.</p>
+            <button type="button" class="btn intake-close-btn" style="margin-top:28px;">Close</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+<script>
+  var INTAKE_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxk8jz47dWn2cgPKlWahnZzW1KZ3ScCawBL7kRJx-TYUllGnn79wfxyfm8w17HtbJyDQA/exec';
+  var intakeOpenTime = 0;
+
+  function openIntake() {
+    var modal = document.getElementById('intakeModal');
+    var backdrop = document.getElementById('intakeBackdrop');
+    modal.hidden = false;
+    backdrop.classList.add('open');
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() { modal.classList.add('open'); });
+    });
+    document.getElementById('if_fname').focus();
+    intakeOpenTime = Date.now();
+    var scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = '-' + scrollY + 'px';
+    document.body.style.width = '100%';
+    document.body.dataset.scrollY = scrollY;
+  }
+
+  function closeIntake() {
+    var modal = document.getElementById('intakeModal');
+    var backdrop = document.getElementById('intakeBackdrop');
+    modal.classList.remove('open');
+    backdrop.classList.remove('open');
+    setTimeout(function() { modal.hidden = true; }, 380);
+    var scrollY = parseInt(document.body.dataset.scrollY || '0', 10);
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    window.scrollTo(0, scrollY);
+  }
+
+  document.querySelectorAll('.intake-trigger').forEach(function(el) {
+    el.addEventListener('click', function(e) { e.preventDefault(); openIntake(); });
+  });
+  document.getElementById('intakeClose').addEventListener('click', closeIntake);
+  document.querySelectorAll('.intake-close-btn').forEach(function(el) {
+    el.addEventListener('click', closeIntake);
+  });
+  document.getElementById('intakeBackdrop').addEventListener('click', closeIntake);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && !document.getElementById('intakeModal').hidden) closeIntake();
+  });
+
+  document.getElementById('intakeModal').addEventListener('keydown', function(e) {
+    if (e.key !== 'Tab') return;
+    var focusable = Array.from(this.querySelectorAll(
+      'button:not([disabled]), input:not([tabindex="-1"]), select, textarea'
+    )).filter(function(el) { return !el.closest('[hidden]'); });
+    var first = focusable[0], last = focusable[focusable.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
+
+  function validateField(el) {
+    var fld = el.closest('.fld');
+    if (!fld) return true;
+    var ok = el.required ? (el.type === 'email' ? /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(el.value.trim()) : el.value.trim().length > 0) : true;
+    fld.classList.toggle('err', !ok);
+    return ok;
+  }
+  function validateFields(ids) {
+    return ids.map(function(id) { return validateField(document.getElementById(id)); }).every(Boolean);
+  }
+
+  document.getElementById('toStep2').addEventListener('click', function() {
+    if (!validateFields(['if_fname','if_lname','if_email','if_company'])) return;
+    document.getElementById('intakeStep1').hidden = true;
+    document.getElementById('intakeStep2').hidden = false;
+    document.getElementById('mpDot2').classList.add('active');
+    document.getElementById('mpLabel').textContent = 'Step 2 of 2';
+    document.getElementById('intakeModal').scrollTop = 0;
+    document.getElementById('if_role').focus();
+  });
+
+  document.getElementById('toStep1').addEventListener('click', function() {
+    document.getElementById('intakeStep2').hidden = true;
+    document.getElementById('intakeStep1').hidden = false;
+    document.getElementById('mpDot2').classList.remove('active');
+    document.getElementById('mpLabel').textContent = 'Step 1 of 2';
+    document.getElementById('intakeModal').scrollTop = 0;
+  });
+
+  document.getElementById('intakeForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    if (!validateFields(['if_role','if_size','if_industry'])) return;
+    var honeypot = this.querySelector('[name="_gotcha"]');
+    if (honeypot && honeypot.value) return;
+    if (Date.now() - intakeOpenTime < 2800) return;
+    var btn = document.getElementById('intakeSubmit');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    var params = new URLSearchParams();
+    this.querySelectorAll('input:not([name="_gotcha"]):not([tabindex="-1"]), select, textarea').forEach(function(f) {
+      if (f.name) params.set(f.name, f.value);
+    });
+    fetch(INTAKE_ENDPOINT, { method: 'POST', mode: 'no-cors', body: params });
+    document.getElementById('intakeStep2').hidden = true;
+    document.getElementById('intakeDone').hidden = false;
+    document.getElementById('mpDot1').classList.remove('active');
+    document.getElementById('mpDot2').classList.remove('active');
+    document.getElementById('intakeModal').scrollTop = 0;
+  });
+</script>
+</body>
+</html>
