@@ -200,7 +200,9 @@
   .exp2-tbody .pain-lab { color: var(--on-dark-soft); }
   .exp2-tbody .gain-lab { color: var(--cobalt-bright); }
   .exp2-media { position: sticky; top: 100px; }
-  .exp2-fig { aspect-ratio: 4 / 3; border: 1px solid oklch(0.95 0.012 265 / 0.18); border-radius: 12px; background: linear-gradient(135deg, var(--navy-2), oklch(0.4 0.12 262 / 0.55)); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+  .exp2-fig { aspect-ratio: 4 / 3; border: 1px solid oklch(0.95 0.012 265 / 0.18); border-radius: 12px; background: linear-gradient(135deg, var(--navy-2), oklch(0.4 0.12 262 / 0.55)); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; overflow: hidden; }
+  .exp2-fig.has-img { padding: 0; }
+  .exp2-fig img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .exp2-fig .obj { font-size: clamp(64px, 9vw, 104px); line-height: 1; }
   .exp2-fig .cap { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-dark-soft); }
   @media (max-width: 760px) { .exp2-body { grid-template-columns: 1fr; gap: 28px; } .exp2-media { position: static; order: -1; } }
@@ -710,13 +712,14 @@
       desc: (TOPIC_META[i] && TOPIC_META[i][j]) ? TOPIC_META[i][j][2] : '',
       pain: p, gain: INDUSTRIES[i].gain[j],
     }));
-    function renderMedia(t) {
-      expMedia2.innerHTML = `<div class="exp2-fig"><div class="obj">${t.obj}</div><div class="cap">${t.title} — image placeholder</div></div>`;
+    const INDUSTRY_IMG = ['manufacturing','logistics','distribution','construction','field-services','professional-services','healthcare','insurance','real-estate'];
+    function renderMedia(i) {
+      const src = `assets/why/${INDUSTRY_IMG[i]}.jpg`;
+      expMedia2.innerHTML = `<div class="exp2-fig has-img"><img src="${src}" alt="${INDUSTRIES[i].label}" loading="lazy"></div>`;
     }
     function openTopic(i, j) {
       const isOpen = [...expTopics2.children][j].classList.contains('open');
       [...expTopics2.children].forEach((el, n) => el.classList.toggle('open', !isOpen && n === j));
-      if (!isOpen) renderMedia(topicsFor(i)[j]);
     }
     function renderTopics(i) {
       const topics = topicsFor(i);
@@ -732,7 +735,7 @@
       [...expTopics2.children].forEach((el, j) => {
         el.querySelector('.exp2-th').addEventListener('click', () => openTopic(i, j));
       });
-      renderMedia(topics[0]);
+      renderMedia(i);
     }
     function selectInd2(i) {
       [...expTabs2.children].forEach((b, n) => b.classList.toggle('on', n === i));
