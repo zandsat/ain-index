@@ -1,26 +1,31 @@
 (function () {
-  // ---- NAV ----
-  var isHome = location.pathname === '/' || location.pathname === '/index.html';
-  var pfx = isHome ? '' : '/';
-  var onBlog = location.pathname.startsWith('/blog');
+  var isHome   = location.pathname === '/' || location.pathname === '/index.html';
+  var isEsHome = location.pathname === '/es/' || location.pathname === '/es/index.html';
+  var isES     = isEsHome;
+  var onBlog   = location.pathname.startsWith('/blog');
+  var anchorPfx = (isHome || isEsHome) ? '' : '/';
 
+  // ---- NAV ----
   var navEl = document.querySelector('.nav');
   if (navEl) {
-    navEl.innerHTML =
-      '<div class="nav-inner">' +
-      (isHome
-        ? '<div class="wordmark">Imago<b>.</b></div>'
-        : '<a href="/" class="wordmark">Imago<b>.</b></a>') +
-      '<div class="nav-links">' +
-      '<a href="' + pfx + '#what">What we do</a>' +
-      '<a href="' + pfx + '#why">Why Imago</a>' +
-      '<a href="' + pfx + '#work">How we work</a>' +
-      '<a href="/blog/"' + (onBlog ? ' class="active"' : '') + '>Blog</a>' +
-      '<a href="#" class="nav-cta intake-trigger">Get in touch</a>' +
-      '</div></div>';
+    var logoEl = (isHome || isEsHome)
+      ? '<div class="wordmark">Imago<b>.</b></div>'
+      : '<a href="' + (isES ? '/es/' : '/') + '" class="wordmark">Imago<b>.</b></a>';
+    var navLinks = isES
+      ? '<a href="' + anchorPfx + '#what">Lo que hacemos</a>' +
+        '<a href="' + anchorPfx + '#why">Por qué Imago</a>' +
+        '<a href="' + anchorPfx + '#work">Cómo trabajamos</a>' +
+        '<a href="/blog/"' + (onBlog ? ' class="active"' : '') + '>Blog</a>' +
+        '<a href="#" class="nav-cta intake-trigger">Contáctanos</a>'
+      : '<a href="' + anchorPfx + '#what">What we do</a>' +
+        '<a href="' + anchorPfx + '#why">Why Imago</a>' +
+        '<a href="' + anchorPfx + '#work">How we work</a>' +
+        '<a href="/blog/"' + (onBlog ? ' class="active"' : '') + '>Blog</a>' +
+        '<a href="#" class="nav-cta intake-trigger">Get in touch</a>';
+    navEl.innerHTML = '<div class="nav-inner">' + logoEl + '<div class="nav-links">' + navLinks + '</div></div>';
   }
 
-  if (isHome && navEl) {
+  if ((isHome || isEsHome) && navEl) {
     var heroMark = document.querySelector('.hero-mark');
     if (heroMark) {
       new IntersectionObserver(function (entries) {
@@ -30,12 +35,49 @@
   }
 
   // ---- MODAL HTML ----
-  document.body.insertAdjacentHTML('beforeend', [
+  var s1Label  = isES ? 'Paso 1 de 2'  : 'Step 1 of 2';
+  var s2Label  = isES ? 'Paso 2 de 2'  : 'Step 2 of 2';
+  var sendLabel = isES ? 'Enviando…' : 'Sending…';
+
+  var modalHtml = isES ? [
+    '<div class="modal-backdrop" id="intakeBackdrop" aria-hidden="true"></div>',
+    '<div class="modal-wrap" id="intakeModal" role="dialog" aria-modal="true" aria-labelledby="intakeTitle" hidden>',
+    '<div class="modal-card" id="intakeCard">',
+    '<div class="modal-head"><span class="eyebrow">Iniciar la conversación</span><button class="modal-close" id="intakeClose" aria-label="Cerrar">&times;</button></div>',
+    '<div class="modal-progress" aria-hidden="true"><div class="mp-track"><span class="mp-dot active" id="mpDot1"></span><span class="mp-line"></span><span class="mp-dot" id="mpDot2"></span></div><span class="mp-label" id="mpLabel">' + s1Label + '</span></div>',
+    '<form id="intakeForm" novalidate>',
+    '<input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">',
+    '<div id="intakeStep1">',
+    '<h2 class="modal-title" id="intakeTitle">Cuéntanos sobre ti.</h2>',
+    '<p class="modal-sub">Unos datos para llegar preparados.</p>',
+    '<div class="f-row">',
+    '<div class="fld"><label class="fld-label" for="if_fname">Nombre <span class="req" aria-hidden="true">*</span></label><input type="text" id="if_fname" name="first_name" autocomplete="given-name" required placeholder="Ana"><span class="fld-err">Por favor ingresa tu nombre.</span></div>',
+    '<div class="fld"><label class="fld-label" for="if_lname">Apellido <span class="req" aria-hidden="true">*</span></label><input type="text" id="if_lname" name="last_name" autocomplete="family-name" required placeholder="García"><span class="fld-err">Por favor ingresa tu apellido.</span></div>',
+    '</div>',
+    '<div class="fld"><label class="fld-label" for="if_email">Correo de trabajo <span class="req" aria-hidden="true">*</span></label><input type="email" id="if_email" name="email" autocomplete="email" required placeholder="ana@tuempresa.com"><span class="fld-err">Por favor ingresa un correo de trabajo válido.</span></div>',
+    '<div class="fld"><label class="fld-label" for="if_company">Empresa <span class="req" aria-hidden="true">*</span></label><input type="text" id="if_company" name="company" autocomplete="organization" required placeholder="Acme Corp"><span class="fld-err">Por favor ingresa el nombre de tu empresa.</span></div>',
+    '<div class="modal-foot"><button type="button" class="btn" id="toStep2">Siguiente <span class="btn-arrow">→</span></button></div>',
+    '</div>',
+    '<div id="intakeStep2" hidden>',
+    '<h2 class="modal-title">Sobre tu empresa.</h2>',
+    '<p class="modal-sub">Ayúdanos a entender tu mundo antes de conocernos.</p>',
+    '<div class="f-row">',
+    '<div class="fld"><label class="fld-label" for="if_role">Tu cargo / título <span class="req" aria-hidden="true">*</span></label><input type="text" id="if_role" name="role" autocomplete="organization-title" required placeholder="Gerente de Operaciones"><span class="fld-err">Por favor ingresa tu cargo.</span></div>',
+    '<div class="fld"><label class="fld-label" for="if_size">Tamaño de la empresa <span class="req" aria-hidden="true">*</span></label><select id="if_size" name="company_size" required><option value="">Selecciona…</option><option value="Under 50">Menos de 50 empleados</option><option value="50–200">50–200 empleados</option><option value="200–1,000">200–1,000 empleados</option><option value="1,000+">1,000+ empleados</option></select><span class="fld-err">Por favor selecciona el tamaño de la empresa.</span></div>',
+    '</div>',
+    '<div class="fld"><label class="fld-label" for="if_industry">Industria <span class="req" aria-hidden="true">*</span></label><select id="if_industry" name="industry" required><option value="">Selecciona…</option><option value="Manufacturing">Manufactura</option><option value="Logistics &amp; Distribution">Logística y distribución</option><option value="Professional Services">Servicios profesionales</option><option value="Construction &amp; Real Estate">Construcción y bienes raíces</option><option value="Healthcare">Salud</option><option value="Retail &amp; E-commerce">Comercio minorista y e-commerce</option><option value="Food &amp; Beverage">Alimentos y bebidas</option><option value="Other">Otro</option></select><span class="fld-err">Por favor selecciona una industria.</span></div>',
+    '<div class="fld"><label class="fld-label" for="if_challenge">¿Cuál es tu mayor reto operativo? <span class="fld-opt">(opcional)</span></label><textarea id="if_challenge" name="challenge" rows="3" placeholder="Ej. demasiado trabajo manual, aprobaciones lentas, sistemas desconectados…"></textarea></div>',
+    '<div class="fld"><label class="fld-label" for="if_source">¿Cómo conociste Imago? <span class="fld-opt">(opcional)</span></label><select id="if_source" name="source"><option value="">Selecciona…</option><option value="LinkedIn">LinkedIn</option><option value="Referral">Recomendación / boca a boca</option><option value="Google search">Búsqueda en Google</option><option value="Event or conference">Evento o conferencia</option><option value="Other">Otro</option></select></div>',
+    '<div class="modal-foot modal-foot-2col"><button type="button" class="btn-ghost" id="toStep1">← Atrás</button><button type="submit" class="btn" id="intakeSubmit">Contáctanos <span class="btn-arrow">→</span></button></div>',
+    '</div>',
+    '<div id="intakeDone" hidden><div class="modal-success"><div class="modal-check">✓</div><h2 class="modal-title" style="margin-bottom:12px;">Nos pondremos en contacto.</h2><p class="modal-sub" style="margin-bottom:0;">Gracias por escribirnos. Revisaremos tu mensaje y te responderemos en un día hábil.</p><button type="button" class="btn intake-close-btn" style="margin-top:28px;">Cerrar</button></div></div>',
+    '</form></div></div>',
+  ] : [
     '<div class="modal-backdrop" id="intakeBackdrop" aria-hidden="true"></div>',
     '<div class="modal-wrap" id="intakeModal" role="dialog" aria-modal="true" aria-labelledby="intakeTitle" hidden>',
     '<div class="modal-card" id="intakeCard">',
     '<div class="modal-head"><span class="eyebrow">Start the conversation</span><button class="modal-close" id="intakeClose" aria-label="Close">&times;</button></div>',
-    '<div class="modal-progress" aria-hidden="true"><div class="mp-track"><span class="mp-dot active" id="mpDot1"></span><span class="mp-line"></span><span class="mp-dot" id="mpDot2"></span></div><span class="mp-label" id="mpLabel">Step 1 of 2</span></div>',
+    '<div class="modal-progress" aria-hidden="true"><div class="mp-track"><span class="mp-dot active" id="mpDot1"></span><span class="mp-line"></span><span class="mp-dot" id="mpDot2"></span></div><span class="mp-label" id="mpLabel">' + s1Label + '</span></div>',
     '<form id="intakeForm" novalidate>',
     '<input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">',
     '<div id="intakeStep1">',
@@ -63,7 +105,8 @@
     '</div>',
     '<div id="intakeDone" hidden><div class="modal-success"><div class="modal-check">✓</div><h2 class="modal-title" style="margin-bottom:12px;">We\'ll be in touch.</h2><p class="modal-sub" style="margin-bottom:0;">Thanks for reaching out. We\'ll review your message and come back to you within one business day.</p><button type="button" class="btn intake-close-btn" style="margin-top:28px;">Close</button></div></div>',
     '</form></div></div>',
-  ].join(''));
+  ];
+  document.body.insertAdjacentHTML('beforeend', modalHtml.join(''));
 
   // ---- MODAL JS ----
   var INTAKE_ENDPOINT = 'https://script.google.com/macros/s/AKfycbxk8jz47dWn2cgPKlWahnZzW1KZ3ScCawBL7kRJx-TYUllGnn79wfxyfm8w17HtbJyDQA/exec';
@@ -145,7 +188,7 @@
     document.getElementById('intakeStep1').hidden = true;
     document.getElementById('intakeStep2').hidden = false;
     document.getElementById('mpDot2').classList.add('active');
-    document.getElementById('mpLabel').textContent = 'Step 2 of 2';
+    document.getElementById('mpLabel').textContent = s2Label;
     document.getElementById('intakeModal').scrollTop = 0;
     document.getElementById('if_role').focus();
   });
@@ -154,7 +197,7 @@
     document.getElementById('intakeStep2').hidden = true;
     document.getElementById('intakeStep1').hidden = false;
     document.getElementById('mpDot2').classList.remove('active');
-    document.getElementById('mpLabel').textContent = 'Step 1 of 2';
+    document.getElementById('mpLabel').textContent = s1Label;
     document.getElementById('intakeModal').scrollTop = 0;
   });
 
@@ -166,7 +209,7 @@
     if (Date.now() - intakeOpenTime < 2800) return;
     var btn = document.getElementById('intakeSubmit');
     btn.disabled = true;
-    btn.textContent = 'Sending…';
+    btn.textContent = sendLabel;
     var params = new URLSearchParams();
     this.querySelectorAll('input:not([name="_gotcha"]):not([tabindex="-1"]), select, textarea').forEach(function (f) {
       if (f.name) params.set(f.name, f.value);

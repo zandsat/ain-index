@@ -4,14 +4,14 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Imago — Tu negocio. Nueva era. Nuevo cómo.</title>
-<meta name="description" content="Ayudamos a empresas establecidas a descubrir cómo la IA puede transformar su forma de trabajar , sin cambiar lo que las hace únicas." />
+<meta name="description" content="Ayudamos a empresas establecidas a descubrir cómo la IA puede transformar su forma de trabajar, sin cambiar lo que las hace únicas." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://startwithimago.com/es/" />
 <meta property="og:title" content="Imago — Tu negocio. Nueva era. Nuevo cómo." />
-<meta property="og:description" content="Ayudamos a empresas establecidas a descubrir cómo la IA puede transformar su forma de trabajar , sin cambiar lo que las hace únicas." />
+<meta property="og:description" content="Ayudamos a empresas establecidas a descubrir cómo la IA puede transformar su forma de trabajar, sin cambiar lo que las hace únicas." />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Imago — Tu negocio. Nueva era. Nuevo cómo." />
-<meta name="twitter:description" content="Ayudamos a empresas establecidas a descubrir cómo la IA puede transformar su forma de trabajar , sin cambiar lo que las hace únicas." />
+<meta name="twitter:description" content="Ayudamos a empresas establecidas a descubrir cómo la IA puede transformar su forma de trabajar, sin cambiar lo que las hace únicas." />
 <link rel="canonical" href="https://startwithimago.com/es/" />
 <link rel="alternate" hreflang="en-CA" href="https://startwithimago.com/" />
 <link rel="alternate" hreflang="es-MX" href="https://startwithimago.com/es/" />
@@ -102,6 +102,7 @@
   .hero-cta .btn-ghost { color: var(--on-dark); }
   .scroll-cue { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; justify-content: center; }
   .cue-chev { display: block; width: 13px; height: 13px; border-right: 1.6px solid var(--on-dark-soft); border-bottom: 1.6px solid var(--on-dark-soft); transform: rotate(45deg); animation: cuebob 1.9s ease-in-out infinite; }
+  .cue-line { display: block; width: 1px; height: 36px; background: linear-gradient(var(--cobalt-bright), transparent); }
   @keyframes cuebob { 0%, 100% { transform: translateY(-2px) rotate(45deg); } 50% { transform: translateY(4px) rotate(45deg); } }
   @media (prefers-reduced-motion: reduce) { .cue-chev { animation: none; } }
 
@@ -126,27 +127,29 @@
   body.js .princ.in .pr:nth-child(3)  { transition-delay: .26s; }
   @media (prefers-reduced-motion: reduce) { body.js .princ .pr { opacity: 1 !important; transform: none !important; transition: none !important; } }
 
-  /* ---------------- WORK-IN-PROGRESS WATERMARK ---------------- */
-  .wip { position: relative; }
-  .wip::before { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 4; background-image: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='330'%20height='200'%3E%3Ctext%20x='8'%20y='112'%20font-family='monospace'%20font-size='18'%20letter-spacing='3'%20fill='%23d99a2b'%20fill-opacity='0.13'%20transform='rotate(-22%20160%20100)'%3EWORK%20IN%20PROGRESS%3C/text%3E%3C/svg%3E"); background-repeat: repeat; }
-  .wip::after { content: "Work in progress · refining next"; position: absolute; top: 16px; right: 16px; z-index: 6; font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; background: oklch(0.82 0.13 78); color: oklch(0.28 0.06 60); padding: 6px 12px; border-radius: 999px; pointer-events: none; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
+  body.js .f-col                  { opacity: 0; transform: scale(0.82); }
+  body.js .f-col.in               { opacity: 1; transform: scale(1); transition: opacity .6s cubic-bezier(.16,1,.3,1), transform .45s cubic-bezier(.25,1,.5,1); }
+  body.js .f-grid.in:hover .f-col.in   { transform: scale(0.93); }
+  body.js .f-grid.in .f-col.in:hover   { transform: scale(1.07); }
+  @media (prefers-reduced-motion: reduce) { body.js .f-col { opacity: 1 !important; transform: none !important; transition: none !important; } }
 
   /* ---------------- WORK ---------------- */
-  .work { background: var(--navy); color: var(--on-dark); }
-  .work .h2 { color: var(--on-dark); max-width: 14ch; }
-  .work .lead { color: var(--on-dark-soft); max-width: 46ch; margin-top: 22px; }
-  .work .lead strong { color: var(--on-dark); font-weight: 400; }
-  .steps { margin-top: 64px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid oklch(0.95 0.012 265 / 0.16); }
-  .step { padding: 38px 34px 8px 34px; border-right: 1px solid oklch(0.95 0.012 265 / 0.12); }
-  .step:first-child { padding-left: 0; }
-  .step:last-child { border-right: none; padding-right: 0; }
-  .step .num { font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em; color: var(--cobalt-bright); }
-  .step h3 { font-family: var(--serif); font-weight: 400; font-size: 27px; line-height: 1.1; margin: 18px 0 16px; color: var(--on-dark); }
-  .step p { font-size: 16px; line-height: 1.6; color: var(--on-dark-soft); }
-  @media (max-width: 860px) { .steps { grid-template-columns: 1fr; } .step { border-right: none; border-bottom: 1px solid oklch(0.95 0.012 265 / 0.12); padding: 32px 0 28px; } }
+  .work { background: var(--paper); color: var(--ink); }
+  .f-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 14px; margin-bottom: 50px; }
+  .f-hdr { font-family: var(--serif); font-weight: 300; font-size: clamp(34px, 4.2vw, 54px); color: var(--ink); letter-spacing: -0.02em; white-space: nowrap; }
+  .f-hdr b { font-style: italic; font-weight: 400; color: var(--cobalt); }
+  .f-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 56px; }
+  .f-col { position: relative; }
+  .f-bn { font-family: var(--serif); font-weight: 300; font-size: clamp(72px, 7vw, 100px); line-height: 0.8; color: var(--cobalt); letter-spacing: -0.03em; }
+  .f-rule { height: 1px; background: var(--line); margin: 28px 0; position: relative; }
+  .f-rule::before { content: ""; position: absolute; left: 0; top: -2.5px; width: 6px; height: 6px; border-radius: 50%; background: var(--cobalt); }
+  .f-col h3 { font-family: var(--serif); font-weight: 400; font-size: 32px; margin: 0 0 16px; color: var(--ink); }
+  .f-col p { font-size: 17.5px; line-height: 1.6; color: var(--ink-soft); margin: 0; }
+  @media (max-width: 900px) { .f-grid { grid-template-columns: 1fr; gap: 36px; } .f-hdr { white-space: normal; } }
 
   /* ---------------- WHY ---------------- */
-  .why { background: var(--paper); }
+  .why { background: var(--navy); color: var(--on-dark); }
+  .why .h2 { color: var(--on-dark); }
   .why-grid { margin-top: 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
   .why .prose p { font-size: 19px; line-height: 1.62; font-weight: 300; color: var(--ink-soft); }
   .why .prose strong { color: var(--ink); font-weight: 500; }
@@ -159,7 +162,44 @@
   .industries .lab { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 13px; }
   .ind-tags { display: flex; flex-wrap: wrap; gap: 8px; }
   .ind-tags span { font-size: 14px; color: var(--ink-soft); border: 1px dashed var(--line); border-radius: 5px; padding: 6px 12px; }
-  .placeholder-note { font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); margin-top: 14px; letter-spacing: 0.02em; }
+
+  /* trust line */
+  .trust { margin-top: 26px; max-width: 62ch; }
+  .trust p { font-size: 19px; line-height: 1.62; font-weight: 300; color: var(--on-dark-soft); margin: 0; }
+  .trust strong { color: var(--on-dark); font-weight: 500; }
+
+  /* industry explorer */
+  .explorer { margin-top: 66px; }
+  .exp-lab { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cobalt-bright); margin-bottom: 18px; }
+  .exp-tabs { display: flex; flex-wrap: wrap; gap: 10px; }
+  .exp-tab { font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--on-dark-soft); background: oklch(0.95 0.012 265 / 0.12); border: 1px solid oklch(0.95 0.012 265 / 0.22); border-radius: 999px; padding: 8px 18px; cursor: pointer; transition: background .2s, border-color .2s, color .2s; }
+  .exp-tab:hover { border-color: var(--cobalt-bright); color: var(--on-dark); }
+  .exp-tab.on { background: var(--cobalt); border-color: var(--cobalt); color: #fff; }
+  .exp2-body { margin-top: 34px; display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: start; }
+  .exp2-topics { display: flex; flex-direction: column; border-top: 1px solid oklch(0.95 0.012 265 / 0.16); }
+  .exp2-topic { border-bottom: 1px solid oklch(0.95 0.012 265 / 0.16); }
+  .exp2-th { width: 100%; text-align: left; background: none; border: 0; cursor: pointer; padding: 20px 2px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: var(--serif); font-weight: 400; font-size: 21px; color: var(--on-dark-soft); transition: color .2s; }
+  .exp2-th:hover { color: var(--on-dark); }
+  .exp2-th .tnum { font-family: var(--mono); font-size: 12px; color: var(--cobalt-bright); margin-right: 14px; }
+  .exp2-th .chev { color: var(--on-dark-soft); font-size: 20px; transition: transform .25s, color .2s; }
+  .exp2-topic.open .exp2-th { color: var(--on-dark); }
+  .exp2-topic.open .exp2-th .chev { transform: rotate(90deg); color: var(--cobalt-bright); }
+  .exp2-tbody { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+  .exp2-topic.open .exp2-tbody { max-height: 600px; }
+  .exp2-tbody-inner { padding: 2px 2px 26px; }
+  .exp2-tbody p { font-size: 15.5px; line-height: 1.55; margin: 0; }
+  .exp2-tbody p + p { margin-top: 12px; }
+  .exp2-tbody .t-desc { font-size: 16px; line-height: 1.62; color: var(--on-dark-soft); margin-bottom: 18px; }
+  .exp2-tbody .t-pain { color: var(--on-dark-soft); }
+  .exp2-tbody .t-gain { color: var(--on-dark); }
+  .exp2-tbody .pain-lab, .exp2-tbody .gain-lab { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; margin-right: 10px; }
+  .exp2-tbody .pain-lab { color: var(--on-dark-soft); }
+  .exp2-tbody .gain-lab { color: var(--cobalt-bright); }
+  .exp2-media { position: sticky; top: 100px; }
+  .exp2-fig { aspect-ratio: 4 / 3; border: 1px solid oklch(0.95 0.012 265 / 0.18); border-radius: 12px; background: linear-gradient(135deg, var(--navy-2), oklch(0.4 0.12 262 / 0.55)); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+  .exp2-fig .obj { font-size: clamp(64px, 9vw, 104px); line-height: 1; }
+  .exp2-fig .cap { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--on-dark-soft); }
+  @media (max-width: 760px) { .exp2-body { grid-template-columns: 1fr; gap: 28px; } .exp2-media { position: static; order: -1; } }
 
   /* ---------------- CTA ---------------- */
   .cta { background: var(--cobalt); color: #fff; text-align: center; }
@@ -178,8 +218,8 @@
   .marquee { position: relative; margin: 30px 0; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
   .mq-track { display: flex; gap: 0; width: max-content; animation: scrollx 52s linear infinite; }
   .mq-track.rev { animation-direction: reverse; animation-duration: 64s; }
-  .news:hover .mq-track { animation-play-state: paused; }
-  .headline { font-family: var(--serif); font-weight: 300; font-size: clamp(26px, 3vw, 40px); letter-spacing: -0.015em; color: var(--on-dark); white-space: nowrap; padding: 0 38px; display: inline-flex; align-items: center; gap: 38px; opacity: 0.82; }
+  .headline { font-family: var(--serif); font-weight: 300; font-size: clamp(26px, 3vw, 40px); letter-spacing: -0.015em; color: var(--on-dark); white-space: nowrap; padding: 0 38px; display: inline-flex; align-items: center; gap: 38px; opacity: 0.82; text-decoration: none; transition: opacity .2s; }
+  .headline:hover { opacity: 1; }
   .headline::after { content: "›"; color: var(--cobalt-bright); font-size: 0.7em; }
   .headline .src { font-family: var(--mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--on-dark-soft); opacity: 0.7; }
   @keyframes scrollx { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -192,27 +232,58 @@
   .foot-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
   footer .wordmark { font-size: 22px; }
   .foot-meta { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .foot-blog { display: none; }
+  @media (max-width: 860px) { .foot-blog { display: block; font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--on-dark-soft); text-decoration: none; } .foot-blog:hover { color: var(--on-dark); } }
 
   @media (max-width: 860px) {
     .wrap { padding: 0 24px; } .nav-inner { padding: 22px 24px; } .nav-links { display: none; }
     .belief-body, .why-grid { grid-template-columns: 1fr; gap: 36px; }
   }
+
+  /* ---------------- INTAKE MODAL ---------------- */
+  .modal-backdrop { position: fixed; inset: 0; z-index: 100; background: oklch(0.205 0.045 264 / 0.65); -webkit-backdrop-filter: blur(5px); backdrop-filter: blur(5px); opacity: 0; transition: opacity .3s; pointer-events: none; }
+  .modal-backdrop.open { opacity: 1; pointer-events: auto; }
+  .modal-wrap { position: fixed; inset: 0; z-index: 101; display: flex; align-items: flex-start; justify-content: center; padding: 20px; pointer-events: none; overflow-y: auto; overscroll-behavior: contain; }
+  .modal-wrap.open { pointer-events: auto; }
+  .modal-wrap[hidden] { display: none !important; }
+  .modal-card { background: var(--paper); border-radius: 14px; box-shadow: 0 28px 72px oklch(0.17 0.04 264 / 0.36), 0 6px 20px oklch(0 0 0 / 0.08); width: 100%; max-width: 548px; margin: auto; padding: 38px 44px; transform: translateY(22px) scale(0.97); transition: transform .38s cubic-bezier(.16,1,.3,1), opacity .3s; opacity: 0; pointer-events: auto; }
+  .modal-wrap.open .modal-card { transform: none; opacity: 1; }
+  .modal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 26px; }
+  .modal-close { border: 0; background: none; color: var(--ink-faint); font-size: 22px; cursor: pointer; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 7px; transition: color .15s, background .15s; line-height: 1; padding: 0; }
+  .modal-close:hover { color: var(--ink); background: var(--line-soft); }
+  .modal-progress { display: flex; align-items: center; gap: 10px; margin-bottom: 30px; }
+  .mp-track { display: flex; align-items: center; }
+  .mp-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); transition: background .3s; display: inline-block; }
+  .mp-dot.active { background: var(--cobalt); }
+  .mp-line { width: 28px; height: 1.5px; background: var(--line); display: inline-block; margin: 0 6px; }
+  .mp-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
+  .modal-title { font-family: var(--serif); font-weight: 300; font-size: clamp(26px, 3.5vw, 36px); letter-spacing: -0.022em; margin: 0 0 8px; color: var(--ink); line-height: 1.1; }
+  .modal-sub { font-size: 16px; color: var(--ink-soft); font-weight: 300; margin: 0 0 28px; }
+  .f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .fld { display: flex; flex-direction: column; gap: 7px; margin-bottom: 18px; }
+  .fld-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); }
+  .fld-label .req { color: var(--cobalt); font-style: normal; }
+  .fld-opt { text-transform: none; letter-spacing: 0; font-family: var(--sans); font-size: 10.5px; color: var(--ink-faint); }
+  .fld input, .fld select, .fld textarea { font-family: var(--sans); font-size: 15px; padding: 11px 14px; border: 1px solid var(--line); border-radius: 7px; background: var(--paper); color: var(--ink); width: 100%; transition: border-color .2s, box-shadow .2s; -webkit-appearance: none; appearance: none; }
+  .fld select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888da8' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 38px; cursor: pointer; }
+  .fld textarea { resize: vertical; min-height: 82px; line-height: 1.55; }
+  .fld input:focus, .fld select:focus, .fld textarea:focus { outline: none; border-color: var(--cobalt); box-shadow: 0 0 0 3px oklch(0.52 0.17 262 / 0.13); }
+  .fld.err input, .fld.err select { border-color: oklch(0.55 0.18 25); }
+  .fld-err { font-family: var(--mono); font-size: 10px; color: oklch(0.55 0.18 25); letter-spacing: 0.04em; display: none; margin-top: 1px; }
+  .fld.err .fld-err { display: block; }
+  .modal-foot { display: flex; justify-content: flex-end; margin-top: 10px; }
+  .modal-foot-2col { justify-content: space-between; align-items: center; }
+  .modal-foot button.btn-ghost { background: none; border: none; border-bottom: 1.5px solid var(--line); cursor: pointer; color: var(--ink-soft); font-size: 15px; padding: 0 0 2px; }
+  .modal-foot button.btn-ghost:hover { color: var(--ink); border-bottom-color: currentColor; }
+  .modal-success { text-align: center; padding: 16px 0 8px; }
+  .modal-check { width: 58px; height: 58px; border-radius: 50%; background: oklch(0.52 0.17 262 / 0.1); color: var(--cobalt); font-size: 26px; display: flex; align-items: center; justify-content: center; margin: 0 auto 22px; }
+  @media (max-width: 600px) { .modal-card { padding: 28px 22px; } .f-row { grid-template-columns: 1fr; gap: 0; } }
 </style>
 </head>
 <body>
 
   <!-- NAV -->
-  <nav class="nav">
-    <div class="nav-inner">
-      <div class="wordmark">Imago<b>.</b></div>
-      <div class="nav-links">
-        <a href="#what">Lo que hacemos</a>
-        <a href="#work">Cómo trabajamos</a>
-        <a href="#why">Por qué Imago</a>
-        <a href="mailto:hello@startwithimago.com?subject=Iniciando%20una%20conversaci%C3%B3n%20con%20Imago&body=Hola%20equipo%20de%20Imago%2C%0A%0AUn%20poco%20sobre%20nosotros%3A%0A%0AEmpresa%3A%20%0AIndustria%3A%20%0AQu%C3%A9%20queremos%20cambiar%3A%20%0A%0AQuedamos%20en%20contacto." class="nav-cta">Contáctanos</a>
-      </div>
-    </div>
-  </nav>
+  <nav class="nav"></nav>
 
   <!-- HERO -->
   <header class="hero">
@@ -226,11 +297,11 @@
       <h1>Tu negocio. Nueva era. Nuevo <em>cómo</em>.</h1>
       <p class="sub">Ayudamos a empresas establecidas a descubrir cómo la IA puede transformar su forma de trabajar, <strong>sin cambiar lo que las hace únicas.</strong></p>
       <div class="hero-cta">
-        <a href="mailto:hello@startwithimago.com?subject=Iniciando%20una%20conversaci%C3%B3n%20con%20Imago&body=Hola%20equipo%20de%20Imago%2C%0A%0AUn%20poco%20sobre%20nosotros%3A%0A%0AEmpresa%3A%20%0AIndustria%3A%20%0AQu%C3%A9%20queremos%20cambiar%3A%20%0A%0AQuedamos%20en%20contacto." class="btn">Contáctanos <span class="btn-arrow">→</span></a>
+        <a href="#" class="btn intake-trigger">Contáctanos <span class="btn-arrow">→</span></a>
         <a href="#work" class="btn-ghost">Ve cómo trabajamos</a>
       </div>
     </div>
-    <div class="scroll-cue"><span class="cue-chev"></span></div>
+    <div class="scroll-cue" id="scrollCue"><span class="cue-chev"></span></div>
   </header>
 
   <!-- LO QUE HACEMOS -->
@@ -242,72 +313,51 @@
       </div>
       <div class="belief-body">
         <div class="prose reveal">
-          <p>No una sola herramienta. No un proyecto que termina cuando nos vamos. Ayudamos a toda tu organización a modernizarse y a desarrollar la capacidad de <strong>seguir modernizándose mucho después de que nos hayamos ido.</strong></p>
-          <p>Trabajamos junto a tu liderazgo para encontrar dónde la IA genera un impacto real y <strong>medible</strong>, probamos lo que vale la pena hacer y lo convertimos en cómo opera la empresa.</p>
+          <p>No solo otra pieza de software. No un proyecto único que termina cuando nos vamos. Ayudamos a toda tu empresa a modernizarse y a construir el músculo para <strong>seguir modernizándose mucho después de que nos hayamos ido.</strong></p>
+          <p>Trabajamos junto a ti y tu equipo para encontrar dónde la IA crea un impacto real y <strong>medible</strong>, demostrar qué realmente vale la pena hacer, y convertirlo en cómo opera la empresa.</p>
         </div>
         <div class="princ" id="princSection">
-          <div class="pr"><div class="prl">Adaptable</div><p><span class="negin">No un producto que instalar.</span> Una empresa que mejora constantemente su forma de trabajar.</p></div>
-          <div class="pr"><div class="prl">Duradero</div><p><span class="negin">No un piloto que se desvanece.</span> Una alianza que permanece durante la ejecución.</p></div>
-          <div class="pr"><div class="prl">Tuyo</div><p><span class="negin">No consejos en una presentación.</span> Una capacidad que vive con tu equipo.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CÓMO TRABAJAMOS -->
-  <section class="work dark" id="work">
-    <div class="wrap">
-      <div class="col reveal">
-        <span class="eyebrow">Cómo trabajamos</span>
-        <h2 class="h2">Nuestros tres <b>simples</b> pasos.</h2>
-      </div>
-      <div class="steps">
-        <div class="step reveal">
-          <div class="num">01</div>
-          <h3>Conocer el negocio</h3>
-          <p>Trabajamos junto a tu equipo para ver cómo fluye el trabajo realmente, encontrando dónde se pierden tiempo y dinero, y los lugares donde la IA puede recuperar más.</p>
-        </div>
-        <div class="step reveal">
-          <div class="num">02</div>
-          <h3>Demostrar una mejor forma</h3>
-          <p>En un taller práctico, tomamos una parte real de tu trabajo y redefinimos cómo se hace, para que puedas sentir la nueva forma tú mismo, no solo ver una demo.</p>
-        </div>
-        <div class="step reveal">
-          <div class="num">03</div>
-          <h3>Ponerlo a trabajar</h3>
-          <p>No nos quedamos en la demostración. Trabajamos junto a ti para llevar ese mismo cambio al resto del negocio, proceso a proceso, y construimos la capacidad de tu equipo para seguir adelante sin nosotros.</p>
+          <div class="pr"><div class="prl">Real</div><p><span class="negin">No IA por sí misma.</span> Trabajo que puedes medir en tiempo y dinero.</p></div>
+          <div class="pr"><div class="prl">Tuyo</div><p><span class="negin">No talla única.</span> Construido alrededor de tu empresa y tu gente.</p></div>
+          <div class="pr"><div class="prl">Duradero</div><p><span class="negin">No una victoria rápida que se desvanece.</span> Un cambio que dura años.</p></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- POR QUÉ IMAGO -->
-  <section class="why" id="why">
+  <section class="why dark" id="why">
     <div class="wrap">
       <div class="col reveal">
         <span class="eyebrow">Por qué Imago</span>
         <h2 class="h2">De quienes construyeron la IA.</h2>
-      </div>
-      <div class="why-grid">
-        <div class="prose reveal">
+        <div class="trust">
           <p>Liderado por ex-directores de ingeniería de <strong>Meta</strong> y <strong>Google</strong>. Más de una década construyendo la IA detrás de productos usados por millones. Ahora enfocados por completo en hacer que funcione dentro de empresas como la tuya.</p>
         </div>
-        <div class="cred-card reveal">
-          <div class="row">
-            <span class="cred-badge">Ex-Meta</span>
-            <p>Entrenó y lanzó modelos a gran escala en producción.</p>
-          </div>
-          <div class="row">
-            <span class="cred-badge">Ex-Google</span>
-            <p>Escaló infraestructura y los equipos que la operan.</p>
-          </div>
-          <div class="industries">
-            <div class="lab">Construido para empresas con operaciones reales</div>
-            <div class="ind-tags">
-              <span>Manufactura</span><span>Logística</span><span>Distribución</span><span>Construcción</span><span>Servicios de campo</span><span>Servicios profesionales</span><span>+ tu industria</span>
-            </div>
-          </div>
+      </div>
+
+      <div class="explorer reveal">
+        <div class="exp-lab">Dónde la IA lo cambia todo: elige tu mundo</div>
+        <div class="exp-tabs" id="expTabs2"></div>
+        <div class="exp2-body">
+          <div class="exp2-topics" id="expTopics2"></div>
+          <div class="exp2-media" id="expMedia2"></div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO TRABAJAMOS -->
+  <section class="work" id="work">
+    <div class="wrap">
+      <div class="f-head reveal">
+        <span class="eyebrow">Cómo trabajamos</span>
+        <span class="f-hdr">Nuestros tres <b>simples</b> pasos.</span>
+      </div>
+      <div class="f-grid">
+        <div class="f-col"><div class="f-bn">01</div><div class="f-rule"></div><h3>Conocer el negocio</h3><p>Nos sentamos con tu equipo y miramos cómo fluye el trabajo realmente, encontrando dónde se pierden tiempo y dinero, y los lugares más claros donde la IA puede recuperar más.</p></div>
+        <div class="f-col"><div class="f-bn">02</div><div class="f-rule"></div><h3>Demostrar una mejor forma</h3><p>En un taller práctico, tomamos una parte real de tu trabajo y redefinimos cómo se hace, para que sientas la nueva forma tú mismo, no solo veas una demo.</p></div>
+        <div class="f-col"><div class="f-bn">03</div><div class="f-rule"></div><h3>Ponerlo a trabajar</h3><p>No nos quedamos en la demostración. Trabajamos junto a ti para llevar ese mismo cambio al resto del negocio, proceso a proceso, y construimos la capacidad de tu equipo para seguir adelante sin nosotros.</p></div>
       </div>
     </div>
   </section>
@@ -318,7 +368,7 @@
       <span class="eyebrow">La IA no tiene que ser complicada</span>
       <h2>Comencemos.</h2>
       <p class="sub">Sin presentación, sin compromiso. Solo una mirada clara a lo que es posible para tu empresa.</p>
-      <a href="mailto:hello@startwithimago.com?subject=Iniciando%20una%20conversaci%C3%B3n%20con%20Imago&body=Hola%20equipo%20de%20Imago%2C%0A%0AUn%20poco%20sobre%20nosotros%3A%0A%0AEmpresa%3A%20%0AIndustria%3A%20%0AQu%C3%A9%20queremos%20cambiar%3A%20%0A%0AQuedamos%20en%20contacto." class="btn">Escríbenos <span class="btn-arrow">→</span></a>
+      <a href="#" class="btn intake-trigger">Contáctanos <span class="btn-arrow">→</span></a>
       <div class="micro">hello@startwithimago.com</div>
     </div>
   </section>
@@ -333,8 +383,8 @@
     <div class="marquee"><div class="mq-track rev" id="mq2"></div></div>
     <div class="wrap reveal">
       <div class="news-foot">
-        <a href="mailto:hello@startwithimago.com?subject=Iniciando%20una%20conversaci%C3%B3n%20con%20Imago&body=Hola%20equipo%20de%20Imago%2C%0A%0AUn%20poco%20sobre%20nosotros%3A%0A%0AEmpresa%3A%20%0AIndustria%3A%20%0AQu%C3%A9%20queremos%20cambiar%3A%20%0A%0AQuedamos%20en%20contacto." class="btn">Contáctanos <span class="btn-arrow">→</span></a>
-        <span>Encuentra dónde empieza tu empresa.</span>
+        <a href="#" class="btn intake-trigger">Contáctanos <span class="btn-arrow">→</span></a>
+        <span>Ve a dónde podría ir tu empresa.</span>
       </div>
     </div>
   </section>
@@ -343,7 +393,8 @@
   <footer>
     <div class="wrap foot-inner">
       <div class="wordmark">Imago<b>.</b></div>
-      <div class="foot-meta">Evolucionando empresas establecidas hacia su forma nativa de IA · © 2026</div>
+      <div class="foot-meta">Evolucionando empresas establecidas hacia la era nativa de IA · © 2026</div>
+      <a href="/blog/" class="foot-blog">Blog</a>
     </div>
   </footer>
 
@@ -366,25 +417,41 @@
 
   // ---- news ----
   const ROW1 = [
-    ['Los fabricantes reducen semanas en su planificación de producción', 'Wire Industrial'],
-    ['La oficina administrativa desaparece silenciosamente hacia el software', 'Reporte del Mercado Medio'],
-    ['Empresas familiares vuelven a liderar sus industrias', 'Diario de Negocios'],
-    ['Equipos de logística automatizan el papeleo que tardaba días', 'Revista Comercial'],
-    ['La IA pasa de piloto a operaciones principales', 'Revisión Sectorial'],
+    ['Los fabricantes reducen semanas en su planificación de producción', 'Rockwell Automation', 'https://www.rockwellautomation.com/en-us/company/news/press-releases/Ninety-Five-Percent-of-Manufacturers-Are-Investing-in-AI-to-Navigate-Uncertainty-and-Accelerate-Smart-Manufacturing.html'],
+    ['La oficina administrativa desaparece silenciosamente hacia el software', 'Recruiter.com', 'https://www.recruiter.com/recruiting/back-office-jobs-are-disappearing-fast-but-what-will-replace-them/'],
+    ['Empresas familiares vuelven a liderar sus industrias', 'PwC', 'https://www.pwc.com/gx/en/news-room/press-releases/2025/pwc-global-family-business-survey.html'],
+    ['Equipos de logística automatizan el papeleo que tardaba días', 'Flexport', 'https://www.flexport.com/blog/generative-ai-in-logistics-use-cases-data-strategies-and-the-future-of/'],
+    ['La IA pasa de piloto a operaciones principales', 'PYMNTS', 'https://www.pymnts.com/artificial-intelligence-2/2025/enterprise-ai-matures-as-companies-move-pilots-to-unified-platforms'],
   ];
   const ROW2 = [
-    ['Los márgenes de distribución suben con aprobaciones automáticas', 'Semanario de Comercio'],
-    ['Décadas de documentos, por fin buscables en segundos', 'Mensual de Operaciones'],
-    ['La nueva ventaja no es el tamaño: es la velocidad', 'Brief de Estrategia'],
-    ['Las empresas establecidas reinventan cómo operan', 'Tiempos Empresariales'],
-    ['En silencio, el mercado medio se está modernizando', 'Señal de Mercado'],
+    ['Los márgenes de distribución suben con aprobaciones automáticas', 'Distribution Strategy', 'https://distributionstrategy.com/2025/07/the-new-rules-of-profitability-in-wholesale-distribution/'],
+    ['Décadas de documentos, por fin buscables en segundos', 'Glean', 'https://www.glean.com/blog/the-definitive-guide-to-ai-based-enterprise-search-for-2025'],
+    ['La nueva ventaja no es el tamaño: es la velocidad', 'Business Money', 'https://www.business-money.com/announcements/how-adaptability-is-outperforming-size-in-2025s-competitive-markets/'],
+    ['Las empresas establecidas reinventan cómo operan', 'PwC', 'https://www.pwc.com/us/en/services/consulting/supply-chain-operations/library/digital-trends-operations-survey.html'],
+    ['En silencio, el mercado medio se está modernizando', 'People Managing People', 'https://peoplemanagingpeople.com/hr-operations/ai-transformation-for-mid-market-companies/'],
   ];
   function fill(el, rows) {
-    const item = ([t, s]) => `<span class="headline">${t}<span class="src">${s}</span></span>`;
+    const item = ([t, s, u]) => `<a class="headline" href="${u}" target="_blank" rel="noopener noreferrer">${t}<span class="src">${s}</span></a>`;
     el.innerHTML = rows.map(item).join('').repeat(2);
   }
   fill(document.getElementById('mq1'), ROW1);
   fill(document.getElementById('mq2'), ROW2);
+
+  document.querySelectorAll('.marquee').forEach(function(marquee) {
+    var tracks = marquee.querySelectorAll('.mq-track');
+    marquee.addEventListener('mouseenter', function() {
+      tracks.forEach(function(t) {
+        var anim = t.getAnimations()[0];
+        if (anim) anim.playbackRate = 0.2;
+      });
+    });
+    marquee.addEventListener('mouseleave', function() {
+      tracks.forEach(function(t) {
+        var anim = t.getAnimations()[0];
+        if (anim) anim.playbackRate = 1;
+      });
+    });
+  });
 
   // ---- reveal ----
   const io = new IntersectionObserver((entries) => {
@@ -393,13 +460,273 @@
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
   const princEl = document.getElementById('princSection');
   if (princEl) io.observe(princEl);
+  const fGrid = document.querySelector('.f-grid');
+  if (fGrid) {
+    const fGridIO = new IntersectionObserver(function(entries) {
+      if (!entries[0].isIntersecting) return;
+      fGrid.classList.add('in');
+      fGrid.querySelectorAll('.f-col').forEach(function(col, i) {
+        setTimeout(function() { col.classList.add('in'); }, i * 140);
+      });
+      fGridIO.unobserve(fGrid);
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    fGridIO.observe(fGrid);
+  }
 
-  // ---- nav ----
-  const navEl = document.querySelector('.nav');
-  const navIO = new IntersectionObserver(([e]) => {
-    navEl.classList.toggle('show', !e.isIntersecting);
-  }, { threshold: 0, rootMargin: '-12px 0px 0px 0px' });
-  navIO.observe(document.querySelector('.hero-mark'));
+  // ---- explorador de industrias ----
+  const INDUSTRIES = [
+    {
+      label: 'Manufactura',
+      intro: `Décadas de know-how en configuración y solución de problemas, encerrado en la cabeza de unos pocos veteranos, y una cotización personalizada sigue tardando <em>días</em>.`,
+      pain: [
+        `El conocimiento que mantiene las líneas en marcha vive con los operadores a punto de jubilarse`,
+        `Cotizar trabajos personalizados o de bajo volumen significa que un estimador revisa trabajos anteriores durante días`,
+        `El programa de producción se reconstruye a mano en cuanto una máquina o un pedido falla`,
+        `Los defectos aparecen en la inspección final, después de que el costo de chatarra y retrabajo ya está absorbido`,
+      ],
+      gain: [
+        `Un asistente con búsqueda entrenado en tus manuales, trabajos anteriores y know-how del piso`,
+        `Cotizaciones redactadas a partir de trabajos previos, planos y costos de materiales en vivo en minutos`,
+        `El programa se replantea solo en cuanto cambia una máquina, un pedido o un material`,
+        `Controles visuales y de sensores detectan defectos en la línea, no en la inspección final`,
+      ],
+    },
+    {
+      label: 'Logística y transporte',
+      intro: `Tus mejores despachadores manejan toda la operación <em>de memoria</em>, y el papeleo nunca para.`,
+      pain: [
+        `Rutas, excepciones y llamadas a choferes manejadas de memoria por pocas personas clave`,
+        `Rate cons, BOLs, documentos aduanales y PODs reteclados a mano en cada sistema`,
+        `Detención, viajes vacíos y cargos adicionales erosionan el margen silenciosamente sin visibilidad clara`,
+        `Interminables llamadas de "¿dónde está mi carga?" alejan al personal del trabajo real todo el día`,
+      ],
+      gain: [
+        `Rutas optimizadas y alertas tempranas sobre cargas a punto de salir mal`,
+        `Documentos leídos, cotejados e ingresados automáticamente, de extremo a extremo`,
+        `Fugas de margen detectadas en cada carril, carga y cliente`,
+        `Respuestas de estado instantáneas y automáticas para clientes y brokers`,
+      ],
+    },
+    {
+      label: 'Distribución y mayoreo',
+      intro: `Precios, aprobaciones y consultas de producto se atascan en <em>unas pocas personas</em>.`,
+      pain: [
+        `Las cotizaciones personalizadas y las aprobaciones de crédito esperan a una o dos personas sobrecargadas`,
+        `Las ventas internas responden las mismas preguntas de stock, tiempos de entrega y especificaciones todo el día`,
+        `La demanda se pronostica por intuición, dejando dinero en stock muerto o perdido por desabasto`,
+        `La captura de pedidos de OC por correo y fax es lenta y propensa a errores`,
+      ],
+      gain: [
+        `Cotizar y aprobar automáticamente, dentro de los márgenes y reglas que tú defines`,
+        `Un asistente que responde preguntas de producto, stock y pedidos al instante`,
+        `Pronósticos basados en señales de demanda reales, no en el año pasado más un estimado`,
+        `OC por correo leídas e ingresadas a tu ERP sin captura manual`,
+      ],
+    },
+    {
+      label: 'Construcción',
+      intro: `Licitaciones, RFIs y órdenes de cambio se acumulan mientras tus mejores personas se ahogan en <em>papeleo</em>.`,
+      pain: [
+        `Estimar nuevas licitaciones significa releer enormes planos y especificaciones a mano`,
+        `RFIs, entregas y órdenes de cambio rastreadas por correo, hojas de cálculo y memoria`,
+        `El conocimiento del trabajo y las lecciones aprendidas se van del sitio con cada capataz`,
+        `Los reportes de campo a oficina llegan días tarde, así que los problemas se detectan demasiado tarde`,
+      ],
+      gain: [
+        `Planos y especificaciones leídos automáticamente para acelerar estimados y licitaciones`,
+        `RFIs y entregas redactadas, registradas y seguidas sin el trabajo administrativo`,
+        `Un registro con búsqueda de cómo se construyó cada trabajo anterior`,
+        `Reportes diarios de campo convertidos en resúmenes instantáneos listos para la oficina`,
+      ],
+    },
+    {
+      label: 'Servicios de campo',
+      intro: `Tus técnicos son excelentes en el campo, pero la programación, las cotizaciones y el seguimiento <em>se pierden entre las grietas</em>.`,
+      pain: [
+        `Los despachadores malabarean trabajos, habilidades, piezas y tráfico todo el día`,
+        `Las cotizaciones y facturas se redactan fuera de horario, así que el cobro se atrasa`,
+        `Las habilidades varían de técnico a técnico: el recién contratado no puede hacer lo que hace el veterano`,
+        `Los contratos de mantenimiento y el trabajo de seguimiento se escapan porque nadie los persiguió`,
+      ],
+      gain: [
+        `Programación inteligente que asigna el técnico, las piezas y la ruta correctos automáticamente`,
+        `Cotizaciones y facturas generadas en el sitio, justo después del trabajo`,
+        `Un asistente que guía a cualquier técnico a través del diagnóstico y la reparación`,
+        `Recordatorios de servicio y renovaciones que hacen el seguimiento solos`,
+      ],
+    },
+    {
+      label: 'Servicios profesionales',
+      intro: `Tu gente más cara pasa el día en <em>redacción y administración</em>, no con clientes.`,
+      pain: [
+        `Experiencia sénior quemada en primeros borradores de documentos, investigación y revisión`,
+        `Décadas de trabajo enterradas en archivos, asuntos e inbox del pasado`,
+        `Horas facturables perdidas en control de tiempos, agendas y actualizaciones de estado`,
+        `Incorporar a un nuevo colaborador a "cómo lo hacemos aquí" toma meses`,
+      ],
+      gain: [
+        `Primeros borradores, investigación y revisiones en minutos. Los expertos solo refinan`,
+        `Cada documento y decisión del pasado con búsqueda instantánea y reutilizable`,
+        `Notas, control de tiempos y actualizaciones de estado gestionados automáticamente`,
+        `Nuevos colaboradores productivos rápido, con el conocimiento de la firma al alcance`,
+      ],
+    },
+    {
+      label: 'Consultorios médicos',
+      intro: `Los médicos pasan más tiempo en <em>documentación y teléfonos</em> que con pacientes.`,
+      pain: [
+        `Notas, expedientes y codificación consumen horas después de cada jornada clínica`,
+        `La recepción está saturada de agendas, recordatorios y preguntas de seguro`,
+        `Las autorizaciones previas y los rechazos de reclamaciones consumen tiempo y flujo de caja`,
+        `Los mensajes de pacientes y el seguimiento de resultados se acumulan más rápido de lo que el personal puede atender`,
+      ],
+      gain: [
+        `Notas de consulta y codificación redactadas de la conversación, listas para revisar`,
+        `Agendas, recordatorios y preguntas rutinarias gestionados automáticamente`,
+        `Autorizaciones y reclamaciones preparadas y verificadas antes de que sean rechazadas`,
+        `Preguntas de pacientes clasificadas y respondidas, con el personal siempre informado`,
+      ],
+    },
+    {
+      label: 'Seguros y brokerage',
+      intro: `Envíos, renovaciones y solicitudes de servicio entierran a tu equipo en <em>documentos</em>.`,
+      pain: [
+        `Solicitudes y aplicaciones retecladas desde PDFs, correos y formularios ACORD`,
+        `Las renovaciones se atienden de forma reactiva, así que las cuentas se escapan o reciben mal servicio`,
+        `Cotizar entre aseguradoras significa horas de comparación manual`,
+        `Certificados y solicitudes de servicio rutinarias atendidas un correo lento a la vez`,
+      ],
+      gain: [
+        `Solicitudes y formularios leídos e ingresados automáticamente`,
+        `Renovaciones marcadas con anticipación, con la preparación ya hecha`,
+        `Cotizaciones de aseguradoras recopiladas y comparadas en minutos`,
+        `Certificados y solicitudes de servicio respondidos al instante`,
+      ],
+    },
+    {
+      label: 'Bienes raíces y propiedades',
+      intro: `Arrendamientos, mantenimiento y reportes a propietarios operan todos con <em>seguimiento manual</em>.`,
+      pain: [
+        `Consultas de arrendamiento y preguntas de inquilinos respondidas un correo a la vez`,
+        `Solicitudes de mantenimiento clasificadas y asignadas a mano`,
+        `Reportes a propietarios e inversores reconstruidos manualmente cada mes`,
+        `Términos de arrendamiento y documentos dispersos, difíciles de buscar al momento de renovar`,
+      ],
+      gain: [
+        `Consultas y preguntas de inquilinos respondidas al instante, las 24 horas`,
+        `Solicitudes de mantenimiento clasificadas, asignadas y rastreadas automáticamente`,
+        `Reportes a propietarios generados a demanda con datos en vivo`,
+        `Cada arrendamiento, cláusula y documento con búsqueda en segundos`,
+      ],
+    },
+  ];
+
+  const TOPIC_META = [
+    [ // Manufactura
+      ['Conocimiento tribal','🧠',`La diferencia entre una línea que funciona y una que se detiene suele depender de pocas personas que simplemente saben cómo se comportan las máquinas. Cuando se jubilan, esa intuición se va con ellos. Entrenar a la siguiente persona lleva años que no tienes.`],
+      ['Cotización','📐',`Cada trabajo personalizado o de bajo volumen es un estimado nuevo, armado a mano con rutas, costos de materiales y recuerdos de trabajos similares. Cotiza muy alto y pierdes el trabajo; muy bajo y pierdes el margen.`],
+      ['Programación','📅',`Una entrega tardía o una falla de máquina puede deshacer una semana de planificación, y reconstruir el programa a mano significa horas en hojas de cálculo mientras el piso espera. El plan queda obsoleto casi en cuanto se imprime.`],
+      ['Calidad','🔍',`Detectar un defecto en la inspección final significa que el material, el tiempo de máquina y la mano de obra ya están gastados. A veces el cliente lo encuentra primero. Mientras más temprano surja un problema, más barato resulta corregirlo.`],
+    ],
+    [ // Logística y transporte
+      ['Despacho','🚚',`Tus despachadores más experimentados tienen toda la red en la cabeza: a qué chofer llamar, qué carril está caliente, cómo recuperarse cuando una carga falla. Es invaluable y casi imposible de escalar o reemplazar.`],
+      ['Papeleo','📄',`Cada carga arrastra una cadena de documentos: rate cons, BOLs, formularios aduanales, pruebas de entrega. Cada uno se lee y se reteclea en otro sistema a mano. Es lento, propenso a errores y un trabajo de tiempo completo para varias personas.`],
+      ['Margen','📉',`Los cargos de detención, millas vacías y adicionales erosionan silenciosamente la ganancia en cargas que parecen bien en la superficie. Sin visibilidad clara de cada carril y cliente, no puedes saber qué negocio realmente deja dinero.`],
+      ['Rastreo','📍',`Clientes y brokers constantemente quieren saber dónde está su carga, y responderlos aleja al personal del trabajo que realmente mueve las cargas. Multiplícalo en cientos de envíos y es un drenaje constante.`],
+    ],
+    [ // Distribución y mayoreo
+      ['Cotizaciones y aprobaciones','✅',`Los precios personalizados y las decisiones de crédito suelen pasar por una o dos personas sénior, así que cuando están ocupadas las cotizaciones se quedan pendientes y los clientes esperan. La velocidad suele ganar el pedido, y el cuello de botella te cuesta contratos.`],
+      ['Consultas de producto','💬',`Las ventas internas pasan gran parte del día respondiendo las mismas preguntas sobre stock, tiempos de entrega, especificaciones y sustituciones. Es necesario, pero aleja a tu gente de vender de verdad.`],
+      ['Pronóstico','📊',`Las decisiones de compra se toman por intuición y los números del año pasado, dejando dinero atado en stock muerto o ventas perdidas por anaqueles vacíos. Los errores pequeños se multiplican en dinero real a través de miles de SKUs.`],
+      ['Captura de pedidos','📥',`Los pedidos siguen llegando como PDFs por correo y faxes que alguien lee y reteclea en el ERP. Cada captura manual es una oportunidad para una cantidad, número de parte o fecha de envío incorrectos.`],
+    ],
+    [ // Construcción
+      ['Estimación','📐',`Licitar un trabajo significa digerir cientos de páginas de planos y especificaciones, y el tiempo del estimador limita cuántas licitaciones puedes perseguir. Omite un detalle y absorbes el costo; inflas demasiado y pierdes la licitación.`],
+      ['RFIs y cambios','📋',`Los RFIs, entregas y órdenes de cambio circulan por correo, hojas de cálculo y memoria, y lo que se escapa se convierte en disputa o extra sin pagar después. La carga administrativa crece con cada trabajo.`],
+      ['Conocimiento del trabajo','🏗️',`Cómo se construyó realmente un trabajo vive en la cabeza de los capataces que lo dirigieron: las sustituciones, las soluciones, las lecciones aprendidas. Cuando se van, el siguiente equipo repite los mismos errores.`],
+      ['Reportes de campo','📲',`Los reportes diarios, fotos y problemas del campo llegan a la oficina días tarde, así que los problemas se detectan mucho después de que pudieran haberse resuelto económicamente. La brecha entre el sitio y la oficina cuesta tiempo y dinero.`],
+    ],
+    [ // Servicios de campo
+      ['Programación','🗓️',`Los despachadores malabarean qué técnico tiene las habilidades correctas, si las piezas están en el camión y cómo sortear el tráfico, todo en tiempo real mientras los trabajos cambian. Un mal programa significa tiempo muerto en ruta, ventanas perdidas y clientes insatisfechos.`],
+      ['Cotizaciones y facturación','🧾',`Los técnicos terminan el trabajo pero la cotización o factura se redacta fuera de horario, así que la facturación se atrasa y el dinero llega lento. Cada día de retraso es dinero sentado en el camión en vez del banco.`],
+      ['Know-how técnico','🛠️',`Tus mejores técnicos pueden diagnosticar cualquier cosa; los más nuevos todavía no, y la brecha se nota en devoluciones y trabajos más largos. Esa experiencia es difícil de replicar y lenta de enseñar.`],
+      ['Seguimiento','🔔',`Los contratos de mantenimiento, las reparaciones recomendadas y las visitas de seguimiento se pierden porque nadie tiene tiempo de perseguirlos. Es ingreso recurrente que se va en silencio.`],
+    ],
+    [ // Servicios profesionales
+      ['Redacción y revisión','✍️',`Tu gente sénior (la cara) pasa horas produciendo primeros borradores, investigando y revisando documentos rutinarios. Tiene que suceder, pero está muy por debajo de lo que valen.`],
+      ['Búsqueda de conocimiento','🔎',`Décadas de experiencia están enterradas en asuntos, archivos e inbox del pasado, y encontrar el precedente correcto significa buscar o simplemente rehacer el trabajo. El mejor activo de la firma es su historia, y casi no tiene búsqueda.`],
+      ['Administración','⏱️',`Control de tiempos, agendas, actualizaciones de estado y notas internas consumen horas facturables y rara vez se hacen bien. Es el impuesto que cada contrato de cliente paga silenciosamente.`],
+      ['Incorporación','🎓',`Poner a un nuevo colaborador al día sobre cómo funciona realmente la firma toma meses de acompañamiento y corrección. Hasta entonces, son un costo en vez de un aportador.`],
+    ],
+    [ // Consultorios médicos
+      ['Documentación','📝',`Los médicos pasan horas después de cada sesión en notas, expedientes y codificación en vez de con pacientes o en casa. La carga de documentación es uno de los mayores impulsores del agotamiento en medicina.`],
+      ['Recepción','☎️',`La recepción está saturada de agendas, recordatorios, registro y preguntas de seguro, y cada llamada caída o espera larga es un paciente frustrado. Es la primera impresión de tu consultorio.`],
+      ['Autorizaciones y reclamaciones','🏥',`Las autorizaciones previas y los rechazos de reclamaciones atan al personal durante horas y retrasan tanto la atención como el pago. El ida y vuelta con los pagadores es un lastre constante para el flujo de caja.`],
+      ['Seguimiento de pacientes','💊',`Los mensajes, resultados y tareas de seguimiento se acumulan más rápido de lo que el personal puede procesarlos, y los importantes corren el riesgo de perderse en el volumen. Los pacientes lo notan cuando caen entre las grietas.`],
+    ],
+    [ // Seguros y brokerage
+      ['Envíos','📄',`Nuevo negocio significa reteclear los mismos datos del cliente desde PDFs, correos y formularios ACORD en múltiples sistemas. Es lento, repetitivo y cada teclazo es un error esperando aparecer en el momento de la reclamación.`],
+      ['Renovaciones','🔄',`Las renovaciones suelen atenderse de forma reactiva, justo antes de vencer, así que las cuentas reciben mal servicio y algunas se van silenciosamente a un broker más atento. La preparación proactiva es donde se gana la retención.`],
+      ['Cotización','📑',`Cotizar un riesgo en múltiples aseguradoras significa ingresar detalles manualmente y comparar resultados línea por línea. Las horas que toma frenan al cliente y limitan cuántas cotizaciones puedes procesar.`],
+      ['Solicitudes de servicio','📬',`Certificados, cambios de póliza y preguntas rutinarias se atienden un correo a la vez, y los clientes te juzgan por qué tan rápido respondes. El servicio es el producto, y es intensivo en mano de obra.`],
+    ],
+    [ // Bienes raíces y propiedades
+      ['Arrendamiento','🏠',`Las consultas de prospectos y las preguntas de inquilinos llegan a toda hora, y las respuestas lentas significan arrendamientos perdidos y vacantes que cuestan dinero cada día. La velocidad y disponibilidad impulsan la ocupación.`],
+      ['Mantenimiento','🔧',`Las solicitudes de mantenimiento llegan por teléfono, correo y mensaje, y alguien tiene que clasificar, asignar y rastrear cada una hasta terminarla. Las cosas se escapan, los inquilinos se frustran y los problemas pequeños se vuelven caros.`],
+      ['Reportes a propietarios','📈',`Los reportes a propietarios e inversores se reconstruyen a mano cada mes con datos dispersos en distintos sistemas. Es trabajo tedioso que no agrega valor pero no puede omitirse.`],
+      ['Búsqueda de documentos','🗂️',`Los términos de arrendamiento, cláusulas y fechas clave están enterrados en documentos que nadie puede buscar rápido, así que las renovaciones y disputas significan buscar entre archivos. La respuesta existe. Solo es difícil encontrarla.`],
+    ],
+  ];
+
+  const expTabs2 = document.getElementById('expTabs2');
+  const expTopics2 = document.getElementById('expTopics2');
+  const expMedia2 = document.getElementById('expMedia2');
+  if (expTabs2 && expTopics2 && expMedia2) {
+    const topicsFor = (i) => INDUSTRIES[i].pain.map((p, j) => ({
+      title: (TOPIC_META[i] && TOPIC_META[i][j]) ? TOPIC_META[i][j][0] : `Tema ${j + 1}`,
+      obj: (TOPIC_META[i] && TOPIC_META[i][j]) ? TOPIC_META[i][j][1] : '🖼️',
+      desc: (TOPIC_META[i] && TOPIC_META[i][j]) ? TOPIC_META[i][j][2] : '',
+      pain: p, gain: INDUSTRIES[i].gain[j],
+    }));
+    function renderMedia(t) {
+      expMedia2.innerHTML = `<div class="exp2-fig"><div class="obj">${t.obj}</div><div class="cap">${t.title}</div></div>`;
+    }
+    function openTopic(i, j) {
+      const isOpen = [...expTopics2.children][j].classList.contains('open');
+      [...expTopics2.children].forEach((el, n) => el.classList.toggle('open', !isOpen && n === j));
+      if (!isOpen) renderMedia(topicsFor(i)[j]);
+    }
+    function renderTopics(i) {
+      const topics = topicsFor(i);
+      expTopics2.innerHTML = topics.map((t, j) => `
+        <div class="exp2-topic${j === 0 ? ' open' : ''}">
+          <button class="exp2-th"><span><span class="tnum">0${j + 1}</span>${t.title}</span><span class="chev">›</span></button>
+          <div class="exp2-tbody"><div class="exp2-tbody-inner">
+            <p class="t-desc">${t.desc}</p>
+            <p class="t-pain"><span class="pain-lab">Hoy</span>${t.pain}</p>
+            <p class="t-gain"><span class="gain-lab">Con IA</span>${t.gain}</p>
+          </div></div>
+        </div>`).join('');
+      [...expTopics2.children].forEach((el, j) => {
+        el.querySelector('.exp2-th').addEventListener('click', () => openTopic(i, j));
+      });
+      renderMedia(topics[0]);
+    }
+    function selectInd2(i) {
+      [...expTabs2.children].forEach((b, n) => b.classList.toggle('on', n === i));
+      renderTopics(i);
+    }
+    INDUSTRIES.forEach((d, i) => {
+      const b = document.createElement('button');
+      b.className = 'exp-tab';
+      b.textContent = d.label;
+      b.addEventListener('click', () => selectInd2(i));
+      expTabs2.appendChild(b);
+    });
+    expTabs2.children[0].classList.add('on');
+    renderTopics(0);
+  }
 </script>
+<script src="/shared.js"></script>
 </body>
 </html>
